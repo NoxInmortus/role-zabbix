@@ -1,0 +1,9 @@
+---
+zabbix_component: agent
+zabbix_conf_file: "/etc/zabbix/zabbix_{{ zabbix_component }}d.conf"
+zabbix_tls_psksecret: "{{ zabbix_tls_agent_psksecret|default(omit) }}"
+zabbix_component_dependencies:
+  - netcat
+zabbix_component_package: zabbix-agent
+zabbix_component_asserts:
+  - zabbix_agent_servers

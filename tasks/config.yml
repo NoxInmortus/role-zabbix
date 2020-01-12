@@ -1,0 +1,33 @@
+---
+- name: Make Zabbix directories
+  file:
+    path : "{{ item }}"
+    state: directory
+    owner: "{{ zabbix_user }}"
+    group: "{{ zabbix_user }}"
+  with_items:
+    - "{{ zabbix_conf_dir }}"
+    - "{{ zabbix_conf_include_dir }}"
+    - "{{ zabbix_log_dir }}"
+    - "{{ zabbix_tls_dir }}"
+    - "{{ zabbix_scripts }}"
+
+- name: Setup tls/psk.secret file
+  copy:
+    content: "{{ zabbix_tls_psksecret }}"
+    dest: "{{ zabbix_tls_pskfile }}"
+    owner: "{{ zabbix_user }}"
+    group: "{{ zabbix_user }}"
+    mode: 0400
+  no_log: true
+  when: zabbix_tls_psksecret is defined
+  notify: "restart zabbix-{{ zabbix_component }}"
+
+- name: Generate Zabbix main configuration file
+  template:
+    src: "zabbix_{{ zabbix_component }}.conf.j2"
+    dest: "{{ zabbix_conf_file }}"
+    owner: "{{ zabbix_user }}"
+    group: "{{ zabbix_user }}"
+    mode: 0644
+  notify: "restart zabbix-{{ zabbix_component }}"

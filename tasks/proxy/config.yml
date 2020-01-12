@@ -1,0 +1,19 @@
+---
+- name: Create zabbix-proxy sytemd override folder
+  file:
+    path: /etc/systemd/system/zabbix-proxy.service.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: Create zabbix-proxy sytemd override file
+  copy:
+    dest: /etc/systemd/system/zabbix-proxy.service.d/override.conf
+    owner: root
+    group: root
+    mode: 0444
+    content: |
+      # ansible managed
+      [Service]
+      TimeoutSec=90s

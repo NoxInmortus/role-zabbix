@@ -1,0 +1,10 @@
+---
+zabbix_component: server
+zabbix_tls_psksecret: "{{ zabbix_tls_server_psksecret|default(omit) }}"
+zabbix_component_dependencies:
+  - python-psycopg2
+  - python-mysqldb
+  - zabbix-get
+zabbix_component_package: zabbix-server-mysql
+zabbix_component_asserts:
+  - zabbix_server_dbpassword

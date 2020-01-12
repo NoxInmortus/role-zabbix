@@ -1,0 +1,10 @@
+---
+zabbix_component: proxy
+zabbix_tls_psksecret: "{{ zabbix_tls_proxy_psksecret|default(omit) }}"
+zabbix_component_dependencies:
+  - python-mysqldb
+  - zabbix-get
+zabbix_component_package: zabbix-proxy-mysql
+zabbix_component_asserts:
+  - zabbix_proxy_servers
+  - zabbix_proxy_dbpassword

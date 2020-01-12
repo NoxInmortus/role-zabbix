@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author:
+    - Alban Espié-Guillon
+  description:
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+      - jessie
+      - stretch
+      - buster
+    - name: Raspbian
+      versions:
+      - jessie
+      - stretch
+      - buster
+  categories:
+    - monitoring

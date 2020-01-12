@@ -1,0 +1,9 @@
+---
+- name: Add Zabbix repository Apt key
+  apt_key:
+    url: "{{ zabbix_apt_key }}"
+
+- name: Install Zabbix repository
+  apt_repository:
+    repo: "{{ zabbix_repository }}"
+    filename: zabbix

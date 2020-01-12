@@ -1,0 +1,13 @@
+---
+- name: Import Zabbix proxy schema
+  mysql_db:
+    state: import
+    target: "{{ zabbix_proxy_dbschema }}"
+    name: "{{ zabbix_proxy_dbname }}"
+    login_host: "{{ zabbix_proxy_dbhost|default(omit) }}"
+    login_password: "{{ zabbix_proxy_dbpassword|default(omit) }}"
+    login_port: "{{ zabbix_proxy_dbport|default(omit) }}"
+    login_unix_socket: "{{ zabbix_proxy_dbsocket|default(omit) }}"
+    login_user: "{{ zabbix_proxy_dbuser|default(omit) }}"
+  #ignore_errors: true
+  run_once: true

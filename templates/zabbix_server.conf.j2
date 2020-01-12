@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+{% set zabbix_server_conf_union = zabbix_server_conf_default|combine(zabbix_server_conf) %}
+
+{% for  key, value in zabbix_server_conf_union.iteritems()|sort %}
+{{ key }}={{ value }}
+{% endfor %}

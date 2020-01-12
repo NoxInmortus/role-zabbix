@@ -1,0 +1,10 @@
+---
+- name: "Add perms sudoers for zabbix scripts"
+  lineinfile:
+    dest: /etc/sudoers
+    line: "zabbix ALL=(ALL) NOPASSWD:{{ zabbix_agent_scripts }}/"
+  when: zabbix_agent_sudo
+  tags:
+    - zabbix_agent
+    - zabbix_config
+  notify: "restart zabbix-{{ zabbix_component }}"
