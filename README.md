@@ -1,4 +1,4 @@
-# Zabbix Proxy ![Zabbix](https://img.shields.io/badge/Ansible-Zabbix.svg)
+# Zabbix ![Zabbix](https://img.shields.io/badge/Ansible-Zabbix.svg)
 
 ## Sommaire
 * [Preview](#preview)
@@ -8,7 +8,7 @@
 * [Usage](#usage)
   - [Variables](#variables)
   - [Tags](#tags)
-  - [EXTERNAL Variables examples](#external_variables_examples)
+  - [EXTERNAL Variables examples](#external variables examples)
 * [Licence](#licence)
 * [Credits](#credits)
 
@@ -66,7 +66,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_log_dir|STRING|NO|/var/log/zabbix|Zabbix log directory|
 |zabbix_logfile|STRING|NO|{{ zabbix_log_dir }}/zabbix_{{ zabbix_component }}.log|Zabbix log file|
 |zabbix_logfilesize|INT|NO|0|Zabbix log file size limit (0 is feature disabled)|
-|zabbix_pidfile|STRING|NO|/var/run/zabbix/zabbix_{{ zabbix_component }}.pid|Zabbix pid file|
+|zabbix_pidfile|STRING|NO|/run/zabbix/zabbix_{{ zabbix_component }}.pid|Zabbix pid file|
 |zabbix_debuglevel|INT|NO|1|Zabbix debug log level|
 |zabbix_timeout|INT|NO|30|Zabbix timeout|
 |zabbix_scripts|STRING|NO|/etc/zabbix/zabbix-scripts|Zabbix scripts path|
@@ -75,12 +75,12 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_dbhost|STRING|NO|'127.0.0.1'|Zabbix dbhost for proxies/server|
 |zabbix_dbname|STRING|NO|zabbix_{{ zabbix_component }}|Zabbix dbname for proxies/server|
 |zabbix_dbuser|STRING|NO|zabbix_{{ zabbix_component }}|Zabbix dbuser user for proxies/server|
+|zabbix_user|STRING|NO|zabbix|Zabbix user|
 |zabbix_tls_dir|STRING|NO|/etc/zabbix/tls|Zabbix tls directory|
 |zabbix_tls_pskfile|STRING|NO|/etc/zabbix/tls/psk.secret|Zabbix psk file|
-|zabbix_configfrequency|INT|NO|300|Zabbix global config frequency|
+|zabbix_configfrequency|INT|NO|3600|Zabbix global config frequency|
 |zabbix_unreacheableperiod|INT|NO|300|Zabbix global unreacheable period|
 |zabbix_dependencies|LIST|NO|See defaults|Zabbix dependencies packages to install|
-|zabbix_tls_psksecret|STRING|NO|None|Zabbix psk secret|
 
 |AGENT VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -88,12 +88,14 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_listenport|INT|NO|10050|Zabbix agent listen port|
 |zabbix_agent_hostname|STRING|NO|{{ zabbix_hostname }}|Zabbix agent hostname overwrite variable|
 |zabbix_agent_timeout|INT|NO|{{ zabbix_timeout }}|Zabbix agent timeout overwrite variable|
-|zabbix_agent_debuglevel|{{ zabbix_debuglevel }}|Zabbix agent debug log level overwrite variable|
-|zabbix_agent_scripts|{{ zabbix_scripts }}|Zabbix agent scripts overwrite variable|
+|zabbix_agent_debuglevel|INT|NO|{{ zabbix_debuglevel }}|Zabbix agent debug log level overwrite variable|
+|zabbix_agent_pidfile|STRING|NO|/run/zabbix/zabbix_{{ zabbix_component }}d.pid|Zabbix pid file overwrite variable|
+|zabbix_agent_scripts|STRING|NO|{{ zabbix_scripts }}|Zabbix agent scripts overwrite variable|
 |zabbix_agent_sudo|BOOL|NO|true|Add all sudoers right to exec scripts in {{ zabbix_agent_scripts }}|
 |zabbix_agent_tlsconnect|STRING|NO|unencrypted|Zabbix agent tls connection mode|
 |zabbix_agent_tlsaccept|STRING|NO|unencrypted|Zabbix agent tls accept mode|
 |zabbix_agent_pskid|STRING|NO|None|Zabbix agent psk id|
+|zabbix_agent_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 
 |PROXY VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -111,6 +113,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_proxy_tlsconnect|STRING|NO|unencrypted|Zabbix proxy tls connection mode|
 |zabbix_proxy_tlsaccept|STRING|NO|unencrypted|Zabbix proxy tls accept mode|
 |zabbix_proxy_pskid|STRING|NO|None|Zabbix proxy psk id|
+|zabbix_proxy_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 |zabbix_proxy_dbsocket|STRING|NO|{{ zabbix_dbsocket }}|Zabbix db socket for mysql connection overwrite variable|
 |zabbix_proxy_dbport|INT|NO|{{ zabbix_dbport }}|Zabbix db port for mysql connection overwrite variable|
 |zabbix_proxy_dbhost|INT|NO|{{ zabbix_dbhost }}|Database hostname for mysql schema import overwrite variable|
@@ -124,6 +127,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_server_conf_default|DICT|NO|See defaults|Defaults zabbix server variables|
 |zabbix_server_conf|DICT|PERHAPS|None|Additional zabbix server variables|
 |zabbix_server_dbpassword|STRING|YES|None|MySQL DBPassword for zabbix server|
+|zabbix_server_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 
 |EXTERNAL VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|

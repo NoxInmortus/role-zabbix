@@ -10,8 +10,8 @@
   tags:
     - zabbix_import
 
-- include: external.yml
-  tags:
-    - zabbix_server
-    - zabbix_config
-    - zabbix_external
+# - include: external.yml
+#   tags:
+#     - zabbix_server
+#     - zabbix_config
+#     - zabbix_external

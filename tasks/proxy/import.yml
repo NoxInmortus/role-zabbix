@@ -9,5 +9,4 @@
     login_port: "{{ zabbix_proxy_dbport|default(omit) }}"
     login_unix_socket: "{{ zabbix_proxy_dbsocket|default(omit) }}"
     login_user: "{{ zabbix_proxy_dbuser|default(omit) }}"
-  #ignore_errors: true
   run_once: true

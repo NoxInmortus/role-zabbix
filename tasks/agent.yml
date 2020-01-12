@@ -16,8 +16,8 @@
     - zabbix_agent
     - zabbix_config
 
-- include: external.yml
-  tags:
-    - zabbix_agent
-    - zabbix_config
-    - zabbix_external
+# - include: external.yml
+#   tags:
+#     - zabbix_agent
+#     - zabbix_config
+#     - zabbix_external

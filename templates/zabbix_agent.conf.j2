@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-PidFile={{ zabbix_pidfile }}
+PidFile={{ zabbix_agent_pidfile }}
 LogFile={{ zabbix_logfile }}
 LogFileSize={{ zabbix_logfilesize }}
 DebugLevel={{ zabbix_agent_debuglevel }}
@@ -13,5 +13,7 @@ Include={{ zabbix_conf_include }}
 # TLS
 TLSConnect={{ zabbix_agent_tlsconnect }}
 TLSAccept={{ zabbix_agent_tlsaccept }}
-TLSPSKFile={{ zabbix_agent_pskfile|default(omit) }}
-TLSPSKIdentity={{ zabbix_agent_pskid|default(omit) }}
+{% if zabbix_agent_psksecret is defined and zabbix_agent_psksecret != '' %}
+TLSPSKFile={{ zabbix_tls_pskfile }}
+TLSPSKIdentity={{ zabbix_agent_psksecret }}
+{% endif %}
