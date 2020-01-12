@@ -14,13 +14,6 @@
     - zabbix_server
 
 # Agent
-- include_vars: agent.yml
-  when: zabbix_agent
-  tags:
-    - zabbix_install
-    - zabbix_config
-    - zabbix_agent
-
 - include: agent.yml
   when: zabbix_agent
   tags:
@@ -29,13 +22,6 @@
     - zabbix_agent
 
 # Proxy
-- include_vars: proxy.yml
-  when: zabbix_proxy
-  tags:
-    - zabbix_install
-    - zabbix_config
-    - zabbix_proxy
-
 - include: proxy.yml
   when: zabbix_proxy
   tags:
@@ -44,13 +30,6 @@
     - zabbix_proxy
 
 # Server
-- include_vars: server.yml
-  when: zabbix_server
-  tags:
-    - zabbix_install
-    - zabbix_config
-    - zabbix_server
-
 - include: server/main.yml
   when: zabbix_server
   tags:
