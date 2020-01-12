@@ -12,10 +12,10 @@ zabbix_conf_file: "/etc/zabbix/zabbix_{{ zabbix_component }}.conf"
 zabbix_conf_include_dir: "/etc/zabbix/zabbix_{{ zabbix_component }}.conf.d"
 zabbix_conf_include: "{{ zabbix_conf_include_dir }}/*.conf"
 zabbix_listenport: 10051
+zabbix_pidfile: "/run/zabbix/zabbix_{{ zabbix_component }}.pid"
 zabbix_log_dir: "/var/log/zabbix"
 zabbix_logfile: "{{ zabbix_log_dir }}/zabbix_{{ zabbix_component }}.log"
 zabbix_logfilesize: 0
-zabbix_pidfile: "/var/run/zabbix/zabbix_{{ zabbix_component }}.pid"
 zabbix_debuglevel: 1
 zabbix_timeout: 30
 zabbix_scripts: "/etc/zabbix/zabbix-scripts"
@@ -31,7 +31,6 @@ zabbix_configfrequency: 3600
 zabbix_unreacheableperiod: 300
 zabbix_dependencies:
   - fping
-  - fping6
   - "{{ zabbix_component_dependencies }}"
 
 # Agent
@@ -40,6 +39,7 @@ zabbix_agent_listenport: 10050
 zabbix_agent_hostname: "{{ zabbix_hostname }}"
 zabbix_agent_timeout: "{{ zabbix_timeout }}"
 zabbix_agent_debuglevel: "{{ zabbix_debuglevel }}"
+zabbix_agent_pidfile: "{{ zabbix_pidfile }}"
 zabbix_agent_scripts: "{{ zabbix_scripts }}"
 zabbix_agent_sudo: true
 zabbix_agent_tlsconnect: 'unencrypted'
@@ -68,30 +68,30 @@ zabbix_proxy_dbuser: "{{ zabbix_dbuser }}"
 # Server
 zabbix_server_mysql_import: false
 zabbix_server_conf_default:
-  ListenPort: {{ zabbix_listenport }}
-  LogType: file
-  LogFile: {{ zabbix_logfile }}
-  LogFileSize: {{ zabbix_logfilesize }}
-  DebugLevel: {{ zabbix_debuglevel }}
-  SocketDir: /var/run/zabbix
-  PidFile: {{ zabbix_pidfile }}
-  DBHost: {{ zabbix_dbhost }}
-  DBName: {{ zabbix_dbname }}
-  DBUser: {{ zabbix_dbuser }}
-  DBPassword: {{ zabbix_server_dbpassword }}
-  DBSocket: {{ zabbix_dbsocket }}
-  DBPort: {{ zabbix_dbport }}
-  Timeout: {{ zabbix_timeout }}
-  UnreachablePeriod: {{ zabbix_server_unreachableperiod }}
-  UnavailableDelay: {{ zabbix_server_unavailabledelay }}
-  UnreachableDelay: {{ zabbix_server_unreachabledelay }}
-  ExternalScripts: {{ zabbix_scripts }}
-  FpingLocation: /usr/bin/fping
-  Fping6Location: /usr/bin/fping6
-  ProxyConfigFrequency: {{ zabbix_configfrequency }}
-  ProxyDataFrequency: 1
+  ListenPort: "{{ zabbix_listenport }}"
+  LogType: "file"
+  LogFile: "{{ zabbix_logfile }}"
+  LogFileSize: "{{ zabbix_logfilesize }}"
+  DebugLevel: "{{ zabbix_debuglevel }}"
+  SocketDir: "/var/run/zabbix"
+  PidFile: "{{ zabbix_pidfile }}"
+  DBHost: "{{ zabbix_dbhost }}"
+  DBName: "{{ zabbix_dbname }}"
+  DBUser: "{{ zabbix_dbuser }}"
+  DBPassword: "{{ zabbix_server_dbpassword }}"
+  DBSocket: "{{ zabbix_dbsocket }}"
+  DBPort: "{{ zabbix_dbport }}"
+  Timeout: "{{ zabbix_timeout }}"
+  UnreachablePeriod: "{{ zabbix_server_unreachableperiod }}"
+  UnavailableDelay: "{{ zabbix_server_unavailabledelay }}"
+  UnreachableDelay: "{{ zabbix_server_unreachabledelay }}"
+  ExternalScripts: "{{ zabbix_scripts }}"
+  FpingLocation: "/usr/bin/fping"
+  Fping6Location: "/usr/bin/fping6"
+  ProxyConfigFrequency: "{{ zabbix_configfrequency }}"
+  ProxyDataFrequency: "1"
   User: "{{ zabbix_user }}"
-  Include: {{ zabbix_conf_include }}
+  Include: "{{ zabbix_conf_include }}"
   SSLCertLocation: "{{ zabbix_tls_dir }}/certs"
   SSLKeyLocation: "{{ zabbix_tls_dir }}/keys"
 
@@ -101,7 +101,7 @@ zabbix_expected_files:
   - "{{ zabbix_conf_dir }}/zabbix_agentd.conf"
   - "{{ zabbix_conf_dir }}/zabbix_proxy.conf"
   - "{{ zabbix_conf_dir }}/zabbix_server.conf"
-  - "{{ zabbix_conf_dir }}/web
+  - "{{ zabbix_conf_dir }}/web"
   - "{{ zabbix_conf_include_dir }}"
   - "{{ zabbix_conf_dir }}/zabbix_agent.conf.d"
   - "{{ zabbix_conf_dir }}/zabbix_proxy.conf.d"

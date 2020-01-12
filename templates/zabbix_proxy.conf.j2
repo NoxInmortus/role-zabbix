@@ -16,15 +16,17 @@ DBSocket={{ zabbix_proxy_dbsocket }}
 DBPort={{ zabbix_proxy_dbport }}
 ConfigFrequency={{ zabbix_proxy_configfrequency }}
 Timeout={{ zabbix_proxy_timeout }}
-UnreachablePeriod={{ zabbix_proxy_unreachableperiod }}
+UnreachablePeriod={{ zabbix_proxy_unreacheableperiod }}
 ExternalScripts={{ zabbix_proxy_scripts }}
 FpingLocation=/usr/bin/fping
 Fping6Location=/usr/bin/fping6
-StatsAllowedIP={{ zabbix_proxy_server|join(',') }}
+StatsAllowedIP={{ zabbix_proxy_servers  |join(',') }}
 Include={{ zabbix_conf_include }}
 
 # TLS
 TLSConnect={{ zabbix_proxy_tlsconnect }}
 TLSAccept={{ zabbix_proxy_tlsaccept }}
-TLSPSKFile={{ zabbix_proxy_pskfile|default(omit) }}
-TLSPSKIdentity={{ zabbix_proxy_pskid|default(omit) }}
+{% if zabbix_proxy_psksecret is defined and zabbix_proxy_psksecret != '' %}
+TLSPSKFile={{ zabbix_tls_pskfile }}
+TLSPSKIdentity={{ zabbix_proxy_psksecret }}
+{% endif %}

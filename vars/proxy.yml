@@ -1,6 +1,7 @@
 ---
 zabbix_component: proxy
-zabbix_tls_psksecret: "{{ zabbix_tls_proxy_psksecret|default(omit) }}"
+zabbix_conf_file: "/etc/zabbix/zabbix_{{ zabbix_component }}.conf"
+zabbix_tls_psksecret: "{{ zabbix_proxy_psksecret|default(omit) }}"
 zabbix_component_dependencies:
   - python-mysqldb
   - zabbix-get
