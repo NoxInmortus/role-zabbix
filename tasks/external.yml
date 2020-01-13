@@ -9,7 +9,7 @@
     mode: 0644
   with_fileglob:
     - "{{ zabbix_include_templates }}"
-  when: zabbix_include_templates is defined and zabbix_include_templates|lengh > 0
+  when: zabbix_include_templates is defined and zabbix_include_templates|length > 0
   notify: "restart zabbix-{{ zabbix_component }}"
 
 - name: Generate Zabbix include configs with git repositories
@@ -30,7 +30,8 @@
     bare: "{{ item.bare|default(omit) }}"
     accept_hostkey: "{{ item.accept_hostkey|default('yes') }}"
   with_items:
-    - "{{ zabbix_include_git|default(omit) }}"
+    - "{{ zabbix_include_git }}"
+  when: zabbix_include_git is defined and zabbix_include_git|length > 0
   notify: "restart zabbix-{{ zabbix_component }}"
 
 # Zabbix scripts
@@ -42,16 +43,17 @@
     group: "{{ zabbix_user }}"
     mode: 0755
   with_items:
-    - "{{ zabbix_scripts_templates|default(omit) }}"
+    - "{{ zabbix_scripts_templates }}"
+  when: zabbix_scripts_templates is defined and zabbix_scripts_templates|length > 0
   notify: "restart zabbix-{{ zabbix_component }}"
 
 - name: Get Zabbix scripts from git repositories
   git:
     repo: "{{ item.repo }}"
-    dest: "{{ item.dest|default('/etc/zabbix/zabbix-scripts') }}"
+    dest: "{{ item.dest|default(zabbix_scripts) }}"
     version: "{{ item.version|default(omit) }}"
     clone: "{{ item.clone|default(omit) }}"
-    update: "{{ item.update|default(omit) }}"
+    #update: "{{ item.update|default(omit) }}"
     separate_git_dir: "{{ item.separate_git_dir|default(omit) }}"
     track_submodules: "{{ item.track_submodules|default(omit) }}"
     remote: "{{ item.remote|default(omit) }}"
@@ -63,5 +65,6 @@
     bare: "{{ item.bare|default(omit) }}"
     accept_hostkey: "{{ item.accept_hostkey|default('yes') }}"
   with_items:
-    - "{{ zabbix_scripts_git|default(omit) }}"
+    - "{{ zabbix_scripts_git }}"
+  when: zabbix_scripts_git is defined and zabbix_scripts_git|length > 0
   notify: "restart zabbix-{{ zabbix_component }}"
