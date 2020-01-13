@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 ProxyMode={{ zabbix_proxy_mode }}
 Server={{ zabbix_proxy_servers|join(',') }}
-ServerPort= {{ zabbix_proxy_serverport }}
+ServerPort={{ zabbix_proxy_serverport }}
 Hostname={{ zabbix_hostname }}
 ListenPort={{ zabbix_proxy_listenport }}
 LogFile={{ zabbix_logfile }}
@@ -28,5 +28,5 @@ TLSConnect={{ zabbix_proxy_tlsconnect }}
 TLSAccept={{ zabbix_proxy_tlsaccept }}
 {% if zabbix_proxy_psksecret is defined and zabbix_proxy_psksecret != '' %}
 TLSPSKFile={{ zabbix_tls_pskfile }}
-TLSPSKIdentity={{ zabbix_proxy_psksecret }}
+TLSPSKIdentity={{ zabbix_proxy_pskid }}
 {% endif %}
