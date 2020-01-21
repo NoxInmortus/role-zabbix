@@ -26,6 +26,7 @@ Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable 
 - Kitchen tests
 - SNMP
 - Test zabbix_scripts_git with multiple repositories
+- Manage host with multiple supervised network interfaces
 
 ### Requirements
 - Ansible >= 2.4

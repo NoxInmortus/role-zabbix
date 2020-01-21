@@ -46,3 +46,9 @@
     - zabbix_proxy
     - zabbix_server
     - zabbix_cleanup
+
+# Api
+- include: api.yml
+  when:
+  tags:
+    - zabbix_api

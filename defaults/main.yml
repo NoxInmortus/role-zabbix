@@ -109,3 +109,18 @@ zabbix_expected_files:
   - "{{ zabbix_log_dir }}"
   - "{{ zabbix_tls_dir }}"
   - "{{ zabbix_scripts }}"
+
+# Zabbix API
+zabbix_api_host_ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+zabbix_api:
+  url: '{{ zabbix_url }}'
+  username: '{{ zabbix_api_user }}'
+  password: '{{ zabbix_api_password }}'
+
+zabbix_api_host_interfaces:
+  type: agent
+  main: 1
+  useip: 1
+  ip: "{{ zabbix_api_host_ip }}"
+  dns:
+  port: "{{ zabbix_agent_listenport }}"
