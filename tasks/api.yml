@@ -11,21 +11,20 @@
 
 - name: Manage Zabbix Hosts
   include: api/hosts.yml
-  #when: ((group is not defined and not maintenance ) and (zabbix_screen |length <= 0))
   tags:
     - zabbix_api
     - zabbix_api_hosts
 
 - name: Manage Zabbix Maintenance
   include: api/maintenance.yml
-  #when: maintenance
+  when: zabbix_maintenance
   tags:
     - zabbix_api
     - zabbix_api_maintenance
 
 - name: Manage Zabbix Screen
   include: api/screen.yml
-  #when: zabbix_screen is defined and zabbix_screen |length > 0
+  when: zabbix_screen is defined and zabbix_screen |length > 0
   tags:
     - zabbix_api
     - zabbix_api_screen
