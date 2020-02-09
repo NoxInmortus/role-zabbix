@@ -124,3 +124,5 @@ zabbix_api_host_interfaces:
   ip: "{{ zabbix_api_host_ip }}"
   dns:
   port: "{{ zabbix_agent_listenport }}"
+
+zabbix_api_maintenance: []
