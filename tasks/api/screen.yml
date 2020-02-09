@@ -1,0 +1,14 @@
+- name: Manage Zabbix Screen
+  local_action:
+    module: zabbix_screen
+    server_url     :  "{{ zabbix_connexion.api_url }}"
+    login_user     :  "{{ zabbix_connexion.username }}"
+    login_password :  "{{ zabbix_connexion.password }}"
+    screens        :
+      - screen_name : "{{ item.name }}"
+        host_group  : "{{ item.group }}"
+        state       : "{{ item.state|default(zabbix_default.state) }}"
+        graph_names : "{{ item.graph.name }}"
+        graph_width : "{{ item.graph.width|default('200') }}"
+        graph_height: "{{ item.graph.height|default('100') }}"
+  with_items: "{{ zabbix_screen }}"

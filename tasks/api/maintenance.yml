@@ -1,0 +1,15 @@
+---
+- name: Create Maintenance window
+  local_action:
+    module: zabbix_maintenance
+    server_url: "{{ zabbix_api.url }}"
+    login_user: "{{ zabbix_api.username }}"
+    login_password : "{{ zabbix_api.password }}"
+    name: "{{ item.name }}"
+    host_name : "{{ item.hostname|default(inventory_hostname) }}"
+    host_groups: "{{ item.hostgroup|default(omit) }}"
+    desc: "{{ item.description|default(omit) }}"
+    minutes : "{{ item.minutes|default(omit) }}"
+    collect_data : "{{ item.collect_data|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+  with_dict: "{{ zabbix_api_maintenance }}"

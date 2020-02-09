@@ -15,5 +15,5 @@ TLSConnect={{ zabbix_agent_tlsconnect }}
 TLSAccept={{ zabbix_agent_tlsaccept }}
 {% if zabbix_agent_psksecret is defined and zabbix_agent_psksecret != '' %}
 TLSPSKFile={{ zabbix_tls_pskfile }}
-TLSPSKIdentity={{ zabbix_agent_psksecret }}
+TLSPSKIdentity={{ zabbix_agent_pskid }}
 {% endif %}

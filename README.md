@@ -22,10 +22,11 @@ Computers, or I could say IT, exist to save working time. Ansible exist to save 
 Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable role as possible.
 
 ### TODO
-- Manage Zabbix groups/hosts/macros/maintenance through API
+- Manage Zabbix maintenances through API
 - Kitchen tests
 - SNMP
 - Test zabbix_scripts_git with multiple repositories
+- Manage host with multiple supervised network interfaces
 
 ### Requirements
 - Ansible >= 2.4
@@ -140,6 +141,17 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_scripts_templates|LIST|NO|None|Deploy Zabbix scripts from templates|
 |zabbix_scripts_git|DICT|NO|None|Get zabbix scripts from git repostories|
 
+|API VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
+|-|-|-|-|-|
+|zabbix_api|DICT|YES|See defaults/main.yml|Dict for zabbix api connection|
+|zabbix_api.zabbix_url|STRING|YES|NONE|Zabbix URL for zabbix api connection|
+|zabbix_api.zabbix_api_user|STRING|YES|NONE|Zabbix user for zabbix api connection|
+|zabbix_api.zabbix_api_password|STRING|YES|NONE|Zabbix password for zabbix api connection|
+|zabbix_api_host_ip|STRING|NO|`"{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"`|Zabbix host listening IP address|
+|zabbix_api_maintenance|DICT|NO|NONE|Dict to defined maintenance windows|
+|zabbix_api_host_interfaces|DICT|NO|See defaults/main.yml|Dict for zabbix host interfaces parameters|
+|zabbix_api_host|DICT|YES|See defaults/main.yml|Dict for zabbix host parameters, see https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html for configuration|
+
 ### EXTERNAL Variables examples
 
 Using `zabbix_include_templates` you can deploy templates configurations files from your ansible controller with something like :
@@ -168,6 +180,26 @@ zabbix_scripts_git:
     force: yes
 ```
 
+### API Variables examples
+```
+zabbix_api:
+  url: 'https://zabbix.mydomain.com'
+  username: 'user'
+  password: 'P@55w0rd'
+
+# Specify ip pub if behind a router
+zabbix_api_host_ip: 163.172.145.120
+
+zabbix_api_host:
+  groups:
+    - MyNewGroup
+  templates:
+    - OS_LINUX
+    - MY_CUSTOM_TEMPLATE
+  tls_accept: 2
+  tls_connect: 2
+```
+
 ### Tags
 
 You can use  `--tags` and `--skip-tags`
@@ -187,6 +219,7 @@ You can use  `--tags` and `--skip-tags`
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_agent
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_proxy
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_server
+- Changelog made with : https://github.com/rustic-games/jilu
 
 ## Licence
 MIT view [LICENSE](LICENSE)

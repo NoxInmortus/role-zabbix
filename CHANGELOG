@@ -1,0 +1,30 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format is based on [Keep a Changelog], and this project adheres to
+[Semantic Versioning]. The file is auto-generated using [Conventional Commits].
+
+[keep a changelog]: https://keepachangelog.com/en/1.0.0/
+[semantic versioning]: https://semver.org/spec/v2.0.0.html
+[conventional commits]: https://www.conventionalcommits.org/en/v1.0.0-beta.4/
+
+## Overview
+
+- docs: Update README ([`8f09744`])
+- fixes: Zabbix Agent tls psksecret and api stuff ([`4a1abb1`])
+- fixes: zombie code in api.yml task ([`aef5c2d`])
+- test: api management ([`ea3b0c8`])
+- fixes: zabbx proxy ([`1dccb85`])
+- refactor: Moved included_vars, changed tags, fixed stuff on external tasks ([`1bc0483`])
+- fixes: agent/proxy tests ([`d9fa3ae`])
+
+<!-- [commits] -->
+
+[`8f09744`]: #/commit/8f09744ae83d94d68330ee38e00169c0b39a2b01
+[`4a1abb1`]: #/commit/4a1abb15d0053c3729dc354b34d240e2499e77dc
+[`aef5c2d`]: #/commit/aef5c2dd6e4f24967433041e810a4fe35413317e
+[`ea3b0c8`]: #/commit/ea3b0c8347a7403f3c8d613e3fa462e8abac2daa
+[`1dccb85`]: #/commit/1dccb85bcfebc91342a0e791b0873e08ec319932
+[`1bc0483`]: #/commit/1bc048309e2c148e24aa46c8b9b8f47193da5d80
+[`d9fa3ae`]: #/commit/d9fa3ae9d01db3f9268b2031f804f3abada809cf
