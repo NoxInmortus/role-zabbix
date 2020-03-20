@@ -214,6 +214,7 @@ You can use  `--tags` and `--skip-tags`
 |zabbix_config|Configurations tasks|
 |zabbix_external|External tasks (includes & scripts deploy)|
 |zabbix_cleanup|Cleanup zabbix directory of unneeded files and directories|
+|zabbix_api|API tasks|
 
 ## Sources
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_agent
