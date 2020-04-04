@@ -13,8 +13,8 @@ EnableRemoteCommands={{ zabbix_agent_remotecommands }}
 LogRemoteCommands={{ zabbix_agent_logremotecommands }}
 
 # TLS
-TLSConnect={{ zabbix_agent_tlsconnect }}
-TLSAccept={{ zabbix_agent_tlsaccept }}
+TLSConnect={{ zabbix_agent_tlsconnect|lower }}
+TLSAccept={{ zabbix_agent_tlsaccept|lower }}
 {% if zabbix_agent_psksecret is defined and zabbix_agent_psksecret != '' %}
 TLSPSKFile={{ zabbix_tls_pskfile }}
 TLSPSKIdentity={{ zabbix_agent_pskid }}

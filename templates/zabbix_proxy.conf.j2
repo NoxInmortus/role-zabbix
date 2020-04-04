@@ -26,8 +26,8 @@ EnableRemoteCommands={{ zabbix_proxy_remotecommands }}
 LogRemoteCommands={{ zabbix_proxy_logremotecommands }}
 
 # TLS
-TLSConnect={{ zabbix_proxy_tlsconnect }}
-TLSAccept={{ zabbix_proxy_tlsaccept }}
+TLSConnect={{ zabbix_proxy_tlsconnect|lower }}
+TLSAccept={{ zabbix_proxy_tlsaccept|lower }}
 {% if zabbix_proxy_psksecret is defined and zabbix_proxy_psksecret != '' %}
 TLSPSKFile={{ zabbix_tls_pskfile }}
 TLSPSKIdentity={{ zabbix_proxy_pskid }}

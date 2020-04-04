@@ -35,7 +35,7 @@ Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable 
 - Deploy scripts and includable configurations
 
 ### Requirements
-- Ansible >= 2.4
+- Ansible >= 2.5
 - MySQL server (for proxy or server)
 - MySQL database and user with correct rights (for proxy or server)
 
@@ -161,6 +161,8 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_api_maintenance|DICT|NO|NONE|Dict to defined maintenance windows|
 |zabbix_api_host_interfaces|DICT|NO|See defaults/main.yml|Dict for zabbix host interfaces parameters|
 |zabbix_api_host|DICT|YES|See defaults/main.yml|Dict for zabbix host parameters, see https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html for configuration|
+|zabbix_api_host.proxy_status|STRING|NONE|Zabbix proxy mode, can be `active` or `passive`|
+|zabbix_api_host.proxy_state|STRING|NONE|Zabbi proxy state, can be `present` or `absent`|
 
 ### EXTERNAL Variables examples
 
@@ -230,6 +232,11 @@ You can use  `--tags` and `--skip-tags`
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_agent
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_proxy
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_server
+- https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html
+- https://docs.ansible.com/ansible/latest/modules/zabbix_group_module.html
+- https://docs.ansible.com/ansible/latest/modules/zabbix_proxy_module.html
+- https://docs.ansible.com/ansible/latest/modules/zabbix_screen_module.html
+- https://docs.ansible.com/ansible/latest/modules/zabbix_maintenance_module.html
 - Changelog made with : https://github.com/rustic-games/jilu
 
 ## Licence
