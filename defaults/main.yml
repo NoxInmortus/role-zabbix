@@ -44,6 +44,9 @@ zabbix_agent_scripts: "{{ zabbix_scripts }}"
 zabbix_agent_sudo: true
 zabbix_agent_tlsconnect: 'unencrypted'
 zabbix_agent_tlsaccept: 'unencrypted'
+zabbix_agent_remotecommands: 0
+zabbix_agent_logremotecommands: 0
+
 
 # Proxy
 zabbix_proxy_servers: "{{ zabbix_servers }}"
@@ -64,6 +67,8 @@ zabbix_proxy_dbport: "{{ zabbix_dbport }}"
 zabbix_proxy_dbhost: "{{ zabbix_dbhost }}"
 zabbix_proxy_dbname: "{{ zabbix_dbname }}"
 zabbix_proxy_dbuser: "{{ zabbix_dbuser }}"
+zabbix_proxy_remotecommands: 0
+zabbix_proxy_logremotecommands: 0
 
 # Server
 zabbix_server_mysql_import: false

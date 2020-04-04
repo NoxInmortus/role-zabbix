@@ -20,8 +20,10 @@ UnreachablePeriod={{ zabbix_proxy_unreacheableperiod }}
 ExternalScripts={{ zabbix_proxy_scripts }}
 FpingLocation=/usr/bin/fping
 Fping6Location=/usr/bin/fping6
-StatsAllowedIP={{ zabbix_proxy_servers  |join(',') }}
+StatsAllowedIP={{ zabbix_proxy_servers |join(',') }}
 Include={{ zabbix_conf_include }}
+EnableRemoteCommands={{ zabbix_proxy_remotecommands }}
+LogRemoteCommands={{ zabbix_proxy_logremotecommands }}
 
 # TLS
 TLSConnect={{ zabbix_proxy_tlsconnect }}

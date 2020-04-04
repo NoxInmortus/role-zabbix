@@ -22,11 +22,17 @@ Computers, or I could say IT, exist to save working time. Ansible exist to save 
 Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable role as possible.
 
 ### TODO
-- Manage Zabbix maintenances through API
-- Kitchen tests
+- CI tests
 - SNMP
 - Test zabbix_scripts_git with multiple repositories
 - Manage host with multiple supervised network interfaces
+
+### Usability
+- Install Zabbix agent/proxy/server
+- Configure Zabbix agent and proxy (not all parameters available)
+- Configure Zabbix server (all parameters available through dict)
+- Manage proxies, hosts, groupes, maintenances and screens through API
+- Deploy scripts and includable configurations
 
 ### Requirements
 - Ansible >= 2.4
@@ -99,6 +105,8 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_tlsaccept|STRING|NO|unencrypted|Zabbix agent tls accept mode|
 |zabbix_agent_pskid|STRING|NO|None|Zabbix agent psk id|
 |zabbix_agent_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
+|zabbix_agent_remotecommands|INT|`0`|Enable remote commands|
+|zabbix_agent_logremotecommands|INT|`0`|Log remote commands|
 
 |PROXY VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -123,6 +131,8 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_proxy_dbname|STRING|NO|`{{ zabbix_dbname }}`|Database name for mysql schema import overwrite variable|
 |zabbix_proxy_dbuser|STRING|NO|`{{ zabbix_dbuser }}`|Database user for mysql schema import overwrite variable|
 |zabbix_proxy_dbpassword|STRING|PERHAPS|None|Database password for mysql schema import|
+|zabbix_proxy_remotecommands|INT|`0`|Enable remote commands|
+|zabbix_proxy_logremotecommands|INT|`0`|Log remote commands|
 
 |SERVER VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
