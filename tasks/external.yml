@@ -53,7 +53,7 @@
     dest: "{{ item.dest|default(zabbix_scripts) }}"
     version: "{{ item.version|default(omit) }}"
     clone: "{{ item.clone|default(omit) }}"
-    #update: "{{ item.update|default(omit) }}"
+    #update: "{{ item.update|default(omit) }}" # omit does not work there?
     separate_git_dir: "{{ item.separate_git_dir|default(omit) }}"
     track_submodules: "{{ item.track_submodules|default(omit) }}"
     remote: "{{ item.remote|default(omit) }}"
@@ -68,3 +68,37 @@
     - "{{ zabbix_scripts_git }}"
   when: zabbix_scripts_git is defined and zabbix_scripts_git|length > 0
   notify: "restart zabbix-{{ zabbix_component }}"
+
+- name: Set up cron job to update cloned git repo for scripts
+  cron:
+    name: 'Zabbix Update Scripts'
+    cron_file: "{{ zabbix_external_cron.file }}"
+    user: "root" #security reasons
+    hour: '{{ zabbix_external_cron.hour }}'
+    minute: '{{ zabbix_external_cron.minute }}'
+    day: "{{ zabbix_external_cron.day }}"
+    weekday: "{{ zabbix_external_cron.weekday }}"
+    month: "{{ zabbix_external_cron.month }}"
+    job: 'cd {{ item.dest|default(zabbix_scripts) }} && git pull >/dev/null 2>&1'
+  with_items:
+    - "{{ zabbix_scripts_git }}"
+  when:
+    - zabbix_external_git_cron
+    - zabbix_scripts_git is defined and zabbix_scripts_git|length > 0
+
+- name: Set up cron job to update cloned git repo for includes
+  cron:
+    name: 'Zabbix Update Includes'
+    cron_file: "{{ zabbix_external_cron.file }}"
+    user: "{{ zabbix_external_cron.user }}"
+    hour: '{{ zabbix_external_cron.hour }}'
+    minute: '{{ zabbix_external_cron.minute }}'
+    day: "{{ zabbix_external_cron.day }}"
+    weekday: "{{ zabbix_external_cron.weekday }}"
+    month: "{{ zabbix_external_cron.month }}"
+    job: 'cd {{ item.dest|default(zabbix_conf_include_dir) }} && git pull >/dev/null 2>&1'
+  with_items:
+    - "{{ zabbix_include_git }}"
+  when:
+    - zabbix_external_git_cron
+    - zabbix_include_git is defined and zabbix_include_git|length > 0

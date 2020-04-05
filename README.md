@@ -3,6 +3,7 @@
 ## Sommaire
 * [Preview](#preview)
   - [TODO](#todo)
+  - [Features](#features)
   - [Requirements](#requirements)
   - [Compatibility](#compatibility)
 * [Usage](#usage)
@@ -21,18 +22,21 @@ Computers, or I could say IT, exist to save working time. Ansible exist to save 
 
 Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable role as possible.
 
+Almost everything this role does is customisable through vars, but you should be able to use it with a very small amount of vars (compared to the available ones).
+
 ### TODO
 - CI tests
 - SNMP
 - Test zabbix_scripts_git with multiple repositories
 - Manage host with multiple supervised network interfaces
 
-### Usability
+### Features
 - Install Zabbix agent/proxy/server
-- Configure Zabbix agent and proxy (not all parameters available)
+- Configure Zabbix agent and proxy (not all parameters available but main stuff is there)
 - Configure Zabbix server (all parameters available through dict)
-- Manage proxies, hosts, groupes, maintenances and screens through API
-- Deploy scripts and includable configurations
+- Manage proxies, hosts, groups, maintenances and screens through API
+- Deploy scripts and includable configurations through templates or git repositories
+- Optional regular update (`true` by default) of the cloned git repositories (scripts/includes) through cron
 
 ### Requirements
 - Ansible >= 2.5
@@ -150,6 +154,8 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_include_git|DICT|NO|None|Get Zabbix includes configurations from git repositories|
 |zabbix_scripts_templates|LIST|NO|None|Deploy Zabbix scripts from templates|
 |zabbix_scripts_git|DICT|NO|None|Get zabbix scripts from git repostories|
+|zabbix_external_cron|DICT|NO|See defaults|DICT for crons configuration|
+|zabbix_external_git_cron|BOOL|NO|`true`|Regular update of scripts/templates cloned through git|
 
 |API VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -161,8 +167,8 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_api_maintenance|DICT|NO|NONE|Dict to defined maintenance windows|
 |zabbix_api_host_interfaces|DICT|NO|See defaults/main.yml|Dict for zabbix host interfaces parameters|
 |zabbix_api_host|DICT|YES|See defaults/main.yml|Dict for zabbix host parameters, see https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html for configuration|
-|zabbix_api_host.proxy_status|STRING|NONE|Zabbix proxy mode, can be `active` or `passive`|
-|zabbix_api_host.proxy_state|STRING|NONE|Zabbi proxy state, can be `present` or `absent`|
+|zabbix_api_host.proxy_status|STRING|NO|NONE|Zabbix proxy mode, can be `active` or `passive`|
+|zabbix_api_host.proxy_state|STRING|NO|NONE|Zabbi proxy state, can be `present` or `absent`|
 
 ### EXTERNAL Variables examples
 
@@ -227,6 +233,10 @@ You can use  `--tags` and `--skip-tags`
 |zabbix_external|External tasks (includes & scripts deploy)|
 |zabbix_cleanup|Cleanup zabbix directory of unneeded files and directories|
 |zabbix_api|API tasks|
+|zabbix_api_hosts|API hosts task|
+|zabbix_api_maintenance|API maintenances task|
+|zabbix_api_screen|API screens task|
+|zabbix_api_proxies|API proxies task|
 
 ## Sources
 - https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_agent
