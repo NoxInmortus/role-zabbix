@@ -51,7 +51,6 @@ zabbix_agent_startagents: 8
 
 # Proxy
 zabbix_proxy_servers: "{{ zabbix_servers }}"
-zabbix_proxy_servers_active: "{{ zabbix_servers }}"
 zabbix_proxy_mysql_import: false
 zabbix_proxy_mode: 0
 zabbix_proxy_listenport: "{{ zabbix_listenport }}"

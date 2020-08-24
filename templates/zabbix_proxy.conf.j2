@@ -1,7 +1,6 @@
 # {{ ansible_managed }}
 ProxyMode={{ zabbix_proxy_mode }}
 Server={{ zabbix_proxy_servers|join(',') }}
-ServerActive={{ zabbix_proxy_servers_active|join(',') }}
 ServerPort={{ zabbix_proxy_serverport }}
 Hostname={{ zabbix_hostname }}
 ListenPort={{ zabbix_proxy_listenport }}
