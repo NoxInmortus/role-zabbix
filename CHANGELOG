@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## Overview
 
+- feat: Crons to update git repo (scripts/includes) ([`d82014d`])
 - feat: Manage zabbix proxies through api ([`7ed2b48`])
 - feat: Add EnableRemoteCommands and LogRemoteCommands parameters ([`193a113`])
 - fixes: Api task, psk parameters defaults ([`9f5ce6f`])
@@ -24,6 +25,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 <!-- [commits] -->
 
+[`d82014d`]: #/commit/d82014df0b034e111bf898d3d99157c28b9c8133
 [`7ed2b48`]: #/commit/7ed2b488975c3beaba1e116e26413e9e28022ba9
 [`193a113`]: #/commit/193a1133a36870cc1cfa1a3300b670b0e5b775a5
 [`9f5ce6f`]: #/commit/9f5ce6fd7df16196426ed8d256122adeded7138a

@@ -47,7 +47,6 @@ zabbix_agent_tlsaccept: 'unencrypted'
 zabbix_agent_remotecommands: 0
 zabbix_agent_logremotecommands: 0
 
-
 # Proxy
 zabbix_proxy_servers: "{{ zabbix_servers }}"
 zabbix_proxy_mysql_import: false
@@ -121,7 +120,6 @@ zabbix_api:
   url: '{{ zabbix_url }}'
   username: '{{ zabbix_api_user }}'
   password: '{{ zabbix_api_password }}'
-
 zabbix_api_host_interfaces:
   type: agent
   main: 1
@@ -129,5 +127,15 @@ zabbix_api_host_interfaces:
   ip: "{{ zabbix_api_host_ip }}"
   dns:
   port: "{{ zabbix_agent_listenport }}"
-
 zabbix_api_maintenance: []
+
+# External
+zabbix_external_git_cron: true
+zabbix_external_cron:
+  file: 'zabbix-git-update'
+  user: '{{ zabbix_user }}'
+  hour: '*/6'
+  minute: '0'
+  day: '*'
+  weekday: '*'
+  month: '*'
