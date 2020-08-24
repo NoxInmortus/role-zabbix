@@ -8,6 +8,7 @@
     - zabbix_api_hosts
     - zabbix_api_maintenance
     - zabbix_api_screen
+    - zabbix_api_proxies
 
 - name: Manage Zabbix Hosts
   include: api/hosts.yml
@@ -28,3 +29,12 @@
   tags:
     - zabbix_api
     - zabbix_api_screen
+
+- name: Manage Zabbix Proxies
+  include: api/proxies.yml
+  when:
+    - zabbix_api_host is defined and zabbix_api_host|length > 0
+    - zabbix_proxy
+  tags:
+    - zabbix_api
+    - zabbix_api_proxies

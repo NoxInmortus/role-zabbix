@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## Overview
 
+- feat: Manage zabbix proxies through api ([`7ed2b48`])
+- feat: Add EnableRemoteCommands and LogRemoteCommands parameters ([`193a113`])
+- fixes: Api task, psk parameters defaults ([`9f5ce6f`])
 - docs: Update README ([`8f09744`])
 - fixes: Zabbix Agent tls psksecret and api stuff ([`4a1abb1`])
 - fixes: zombie code in api.yml task ([`aef5c2d`])
@@ -21,6 +24,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 <!-- [commits] -->
 
+[`7ed2b48`]: #/commit/7ed2b488975c3beaba1e116e26413e9e28022ba9
+[`193a113`]: #/commit/193a1133a36870cc1cfa1a3300b670b0e5b775a5
+[`9f5ce6f`]: #/commit/9f5ce6fd7df16196426ed8d256122adeded7138a
 [`8f09744`]: #/commit/8f09744ae83d94d68330ee38e00169c0b39a2b01
 [`4a1abb1`]: #/commit/4a1abb15d0053c3729dc354b34d240e2499e77dc
 [`aef5c2d`]: #/commit/aef5c2dd6e4f24967433041e810a4fe35413317e
