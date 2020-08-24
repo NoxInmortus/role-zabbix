@@ -7,3 +7,10 @@
   with_items:
     - "{{ zabbix_dependencies }}"
     - "{{ zabbix_component_package }}"
+
+- name: Install zabbix-sender
+  apt:
+    name: zabbix-sender
+    state: latest
+    cache_valid_time: 3600
+  when: ansible_architecture == "x86_64"
