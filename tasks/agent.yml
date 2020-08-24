@@ -1,0 +1,28 @@
+---
+- include_vars: agent.yml
+  when: zabbix_agent
+  tags: always
+
+- include: validate.yml
+  tags: always
+
+- include: install.yml
+  tags:
+    - zabbix_agent
+    - zabbix_install
+
+- include: config.yml
+  tags:
+    - zabbix_agent
+    - zabbix_config
+
+- include: agent/config.yml
+  tags:
+    - zabbix_agent
+    - zabbix_config
+
+- include: external.yml
+  tags:
+    - zabbix_agent
+    - zabbix_config
+    - zabbix_external

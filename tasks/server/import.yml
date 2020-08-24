@@ -1,0 +1,12 @@
+---
+- name: Import Zabbix server schema
+  mysql_db:
+    state: import
+    target: "{{ zabbix_server_dbschema }}"
+    name: "{{ zabbix_server_dbname }}"
+    login_host: "{{ zabbix_server_dbhost|default(omit) }}"
+    login_password: "{{ zabbix_server_dbpassword|default(omit) }}"
+    login_port: "{{ zabbix_server_dbport|default(omit) }}"
+    login_unix_socket: "{{ zabbix_server_dbsocket|default(omit) }}"
+    login_user: "{{ zabbix_server_dbuser|default(omit) }}"
+  run_once: true

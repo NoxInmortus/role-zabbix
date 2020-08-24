@@ -1,0 +1,11 @@
+---
+zabbix_component: agent
+zabbix_conf_file: "/etc/zabbix/zabbix_{{ zabbix_component }}d.conf"
+zabbix_agent_pidfile: "/run/zabbix/zabbix_{{ zabbix_component }}d.pid"
+zabbix_tls_psksecret: "{{ zabbix_agent_psksecret|default(omit) }}"
+zabbix_include_templates: "{{ zabbix_agent_include_templates|default(omit) }}"
+zabbix_component_dependencies:
+  - netcat
+zabbix_component_package: zabbix-agent
+zabbix_component_asserts:
+  - zabbix_agent_servers

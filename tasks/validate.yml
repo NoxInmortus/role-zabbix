@@ -1,0 +1,6 @@
+---
+- name: Asserts variables
+  assert:
+    that: "{{ item }} is defined"
+  with_items:
+    - "{{ zabbix_component_asserts }}"

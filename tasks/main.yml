@@ -1,0 +1,54 @@
+---
+- name: 'Check if ansible version >= 2.4.'
+  assert:
+    that: "ansible_version.full is version_compare(2.4, '>=')"
+    msg: "Ansible 2.4 or superior version is required."
+
+# Global
+- include: repository.yml
+  when: zabbix_agent or zabbix_proxy or zabbix_server
+  tags:
+    - zabbix_install
+    - zabbix_agent
+    - zabbix_proxy
+    - zabbix_server
+
+# Agent
+- include: agent.yml
+  when: zabbix_agent
+  tags:
+    - zabbix_install
+    - zabbix_config
+    - zabbix_agent
+
+# Proxy
+- include: proxy.yml
+  when: zabbix_proxy
+  tags:
+    - zabbix_install
+    - zabbix_config
+    - zabbix_proxy
+
+# Server
+- include: server/main.yml
+  when: zabbix_server
+  tags:
+    - zabbix_install
+    - zabbix_config
+    - zabbix_server
+
+# All
+- include: cleanup.yml
+  when: zabbix_cleanup
+  tags:
+    - zabbix_config
+    - zabbix_agent
+    - zabbix_proxy
+    - zabbix_server
+    - zabbix_cleanup
+
+# Api
+- include: api.yml
+  when: zabbix_api_host is defined and zabbix_api_host|length > 0
+  tags:
+    - zabbix_api

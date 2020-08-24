@@ -1,0 +1,9 @@
+---
+- name: Install zabbix packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    cache_valid_time: 3600
+  with_items:
+    - "{{ zabbix_dependencies }}"
+    - "{{ zabbix_component_package }}"

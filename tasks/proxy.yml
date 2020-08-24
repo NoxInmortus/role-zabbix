@@ -1,0 +1,32 @@
+---
+- include_vars: proxy.yml
+  when: zabbix_proxy
+  tags: always
+
+- include: validate.yml
+  tags: always
+
+- include: install.yml
+  tags:
+    - zabbix_agent
+    - zabbix_install
+
+- include: proxy/config.yml
+  tags:
+    - zabbix_install
+
+- include: proxy/import.yml
+  when: zabbix_proxy_mysql_import
+  tags:
+    - zabbix_import
+
+- include: config.yml
+  tags:
+    - zabbix_proxy
+    - zabbix_config
+
+- include: external.yml
+  tags:
+    - zabbix_proxy
+    - zabbix_config
+    - zabbix_external

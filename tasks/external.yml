@@ -1,0 +1,70 @@
+---
+# Include configurations
+- name: Generate Zabbix include configs with templates
+  template:
+    src: "{{ item }}"
+    dest: "{{ zabbix_conf_include_dir }}/{{ item | basename | regex_replace('.j2','') }}"
+    owner: "{{ zabbix_user }}"
+    group: "{{ zabbix_user }}"
+    mode: 0644
+  with_fileglob:
+    - "{{ zabbix_include_templates }}"
+  when: zabbix_include_templates is defined and zabbix_include_templates|length > 0
+  notify: "restart zabbix-{{ zabbix_component }}"
+
+- name: Generate Zabbix include configs with git repositories
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest|default(zabbix_conf_include_dir) }}"
+    version: "{{ item.version|default(omit) }}"
+    clone: "{{ item.clone|default(omit) }}"
+    update: "{{ item.update|default(omit) }}"
+    separate_git_dir: "{{ item.separate_git_dir|default(omit) }}"
+    track_submodules: "{{ item.track_submodules|default(omit) }}"
+    remote: "{{ item.remote|default(omit) }}"
+    recursive: "{{ item.recursive|default(omit) }}"
+    key_file: "{{ item.key_file|default(omit) }}"
+    force: "{{ item.force|default(omit) }}"
+    executable: "{{ item.executable|default(omit) }}"
+    depth: "{{ item.depth|default(omit) }}"
+    bare: "{{ item.bare|default(omit) }}"
+    accept_hostkey: "{{ item.accept_hostkey|default('yes') }}"
+  with_items:
+    - "{{ zabbix_include_git }}"
+  when: zabbix_include_git is defined and zabbix_include_git|length > 0
+  notify: "restart zabbix-{{ zabbix_component }}"
+
+# Zabbix scripts
+- name: Get Zabbix scripts from templates
+  template:
+    src: "{{ item }}"
+    dest: "{{ zabbix_scripts }}"
+    owner: "{{ zabbix_user }}"
+    group: "{{ zabbix_user }}"
+    mode: 0755
+  with_items:
+    - "{{ zabbix_scripts_templates }}"
+  when: zabbix_scripts_templates is defined and zabbix_scripts_templates|length > 0
+  notify: "restart zabbix-{{ zabbix_component }}"
+
+- name: Get Zabbix scripts from git repositories
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest|default(zabbix_scripts) }}"
+    version: "{{ item.version|default(omit) }}"
+    clone: "{{ item.clone|default(omit) }}"
+    #update: "{{ item.update|default(omit) }}"
+    separate_git_dir: "{{ item.separate_git_dir|default(omit) }}"
+    track_submodules: "{{ item.track_submodules|default(omit) }}"
+    remote: "{{ item.remote|default(omit) }}"
+    recursive: "{{ item.recursive|default(omit) }}"
+    key_file: "{{ item.key_file|default(omit) }}"
+    force: "{{ item.force|default(omit) }}"
+    executable: "{{ item.executable|default(omit) }}"
+    depth: "{{ item.depth|default(omit) }}"
+    bare: "{{ item.bare|default(omit) }}"
+    accept_hostkey: "{{ item.accept_hostkey|default('yes') }}"
+  with_items:
+    - "{{ zabbix_scripts_git }}"
+  when: zabbix_scripts_git is defined and zabbix_scripts_git|length > 0
+  notify: "restart zabbix-{{ zabbix_component }}"

@@ -1,0 +1,16 @@
+---
+- name: Fetch list of file in config dir
+  shell: "ls -1 -d {{ zabbix_conf_dir }}/*"
+  register: zabbix_confdir_contents
+  changed_when: False
+  when: zabbix_cleanup
+
+- name: Purge unmanaged file in config dir
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items: "{{ zabbix_confdir_contents.stdout_lines|default([]) }}"
+  when:
+    - zabbix_cleanup
+    - item not in zabbix_expected_files
+  notify: restart zabbix-agent

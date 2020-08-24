@@ -1,0 +1,32 @@
+# {{ ansible_managed }}
+ProxyMode={{ zabbix_proxy_mode }}
+Server={{ zabbix_proxy_servers|join(',') }}
+ServerPort={{ zabbix_proxy_serverport }}
+Hostname={{ zabbix_hostname }}
+ListenPort={{ zabbix_proxy_listenport }}
+LogFile={{ zabbix_logfile }}
+LogFileSize={{ zabbix_logfilesize }}
+DebugLevel={{ zabbix_proxy_debuglevel }}
+PidFile={{ zabbix_pidfile }}
+DBHost={{ zabbix_proxy_dbhost }}
+DBName={{ zabbix_proxy_dbname }}
+DBUser={{ zabbix_proxy_dbuser }}
+DBPassword={{ zabbix_proxy_dbpassword }}
+DBSocket={{ zabbix_proxy_dbsocket }}
+DBPort={{ zabbix_proxy_dbport }}
+ConfigFrequency={{ zabbix_proxy_configfrequency }}
+Timeout={{ zabbix_proxy_timeout }}
+UnreachablePeriod={{ zabbix_proxy_unreacheableperiod }}
+ExternalScripts={{ zabbix_proxy_scripts }}
+FpingLocation=/usr/bin/fping
+Fping6Location=/usr/bin/fping6
+StatsAllowedIP={{ zabbix_proxy_servers  |join(',') }}
+Include={{ zabbix_conf_include }}
+
+# TLS
+TLSConnect={{ zabbix_proxy_tlsconnect }}
+TLSAccept={{ zabbix_proxy_tlsaccept }}
+{% if zabbix_proxy_psksecret is defined and zabbix_proxy_psksecret != '' %}
+TLSPSKFile={{ zabbix_tls_pskfile }}
+TLSPSKIdentity={{ zabbix_proxy_pskid }}
+{% endif %}
