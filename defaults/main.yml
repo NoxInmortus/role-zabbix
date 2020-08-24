@@ -35,6 +35,7 @@ zabbix_dependencies:
 
 # Agent
 zabbix_agent_servers: "{{ zabbix_servers }}"
+zabbix_agent_servers_active: "{{ zabbix_servers }}"
 zabbix_agent_listenport: 10050
 zabbix_agent_hostname: "{{ zabbix_hostname }}"
 zabbix_agent_timeout: "{{ zabbix_timeout }}"
@@ -49,6 +50,7 @@ zabbix_agent_logremotecommands: 0
 
 # Proxy
 zabbix_proxy_servers: "{{ zabbix_servers }}"
+zabbix_proxy_servers_active: "{{ zabbix_servers }}"
 zabbix_proxy_mysql_import: false
 zabbix_proxy_mode: 0
 zabbix_proxy_listenport: "{{ zabbix_listenport }}"

@@ -98,6 +98,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |AGENT VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
 |zabbix_agent_servers|LIST|PERHAPS|`{{ zabbix_servers }}`|Zabbix agent overwrite variable for zabbix_servers|
+|zabbix_agent_servers_ative|LIST|PERHAPS|`{{ zabbix_servers }}`|Zabbix agent overwrite variable for zabbix_servers|
 |zabbix_agent_listenport|INT|NO|10050|Zabbix agent listen port|
 |zabbix_agent_hostname|STRING|NO|`{{ zabbix_hostname }}`|Zabbix agent hostname overwrite variable|
 |zabbix_agent_timeout|INT|NO|`{{ zabbix_timeout }}`|Zabbix agent timeout overwrite variable|
@@ -115,6 +116,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |PROXY VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
 |zabbix_proxy_servers|LIST|PERHAPS|`{{ zabbix_servers }}`|Zabbix proxy overwrite variable for zabbix_servers|
+|zabbix_proxy_servers_ative|LIST|PERHAPS|`{{ zabbix_servers }}`|Zabbix proxy overwrite variable for zabbix_servers|
 |zabbix_proxy_mysql_import|BOOL|NO|false|Import proxy mysql schema|
 |zabbix_proxy_mode|INT|NO|0|Zabbix proxy mode 0=active / 1=passive|
 |zabbix_proxy_listenport|INT|NO|`{{ zabbix_listenport }}`|Zabbix proxy overwrite variable for listening port|
