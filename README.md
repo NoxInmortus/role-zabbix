@@ -112,6 +112,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 |zabbix_agent_remotecommands|INT|`0`|Enable remote commands|
 |zabbix_agent_logremotecommands|INT|`0`|Log remote commands|
+|zabbix_agent_startagents|INT|`8`|StartAgents parameter|
 
 |PROXY VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|

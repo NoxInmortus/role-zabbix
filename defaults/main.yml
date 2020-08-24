@@ -47,6 +47,7 @@ zabbix_agent_tlsconnect: 'unencrypted'
 zabbix_agent_tlsaccept: 'unencrypted'
 zabbix_agent_remotecommands: 0
 zabbix_agent_logremotecommands: 0
+zabbix_agent_startagents: 8
 
 # Proxy
 zabbix_proxy_servers: "{{ zabbix_servers }}"
