@@ -26,7 +26,6 @@ Almost everything this role does is customisable through vars, but you should be
 
 ### TODO
 - CI tests
-- SNMP
 - Test zabbix_scripts_git with multiple repositories
 - Manage host with multiple supervised network interfaces
 
@@ -219,6 +218,17 @@ zabbix_api_host:
     - MY_CUSTOM_TEMPLATE
   tls_accept: 2
   tls_connect: 2
+
+# SNMP device
+zabbix_cleanup: false
+zabbix_api_host_interfaces:
+  type: snmp
+  main: '1'
+  bulk: '1'
+  dns: '{{ inventory_hostname }}.{{ common_domain_name }}'
+  ip: "{{ hostvars[inventory_hostname]['ansible_switch0']['ipv4']['address'] }}"
+  useip: '1'
+  port: '161'
 ```
 
 ### Tags
@@ -254,6 +264,3 @@ You can use  `--tags` and `--skip-tags`
 
 ## Licence
 MIT view [LICENSE](LICENSE)
-
-## Credits
-Alban E.G.

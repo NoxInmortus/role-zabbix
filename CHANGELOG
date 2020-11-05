@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## Overview
 
+- Added: `bulk` sub-parameter for zabbix_host api task ([`425c01b`])
 - feat: Crons to update git repo (scripts/includes) ([`d82014d`])
 - feat: Manage zabbix proxies through api ([`7ed2b48`])
 - feat: Add EnableRemoteCommands and LogRemoteCommands parameters ([`193a113`])
