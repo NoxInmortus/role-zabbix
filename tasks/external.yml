@@ -1,18 +1,15 @@
 ---
-# Include configurations
-- name: Generate Zabbix include configs with templates
+- name: zabbix-external | Get Zabbix include configs with templates
   template:
     src: "{{ item }}"
     dest: "{{ zabbix_conf_include_dir }}/{{ item | basename | regex_replace('.j2','') }}"
     owner: "{{ zabbix_user }}"
     group: "{{ zabbix_user }}"
     mode: 0644
-  with_fileglob:
-    - "{{ zabbix_include_templates }}"
-  when: zabbix_include_templates is defined and zabbix_include_templates|length > 0
+  with_fileglob: "{{ zabbix_include_templates|default([]) }}"
   notify: "restart zabbix-{{ zabbix_component }}"
 
-- name: Generate Zabbix include configs with git repositories
+- name: zabbix-external | Get Zabbix include configs from git repositories
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest|default(zabbix_conf_include_dir) }}"
@@ -29,31 +26,26 @@
     depth: "{{ item.depth|default(omit) }}"
     bare: "{{ item.bare|default(omit) }}"
     accept_hostkey: "{{ item.accept_hostkey|default('yes') }}"
-  with_items:
-    - "{{ zabbix_include_git }}"
-  when: zabbix_include_git is defined and zabbix_include_git|length > 0
+  loop: "{{ zabbix_include_git|default([]) }}"
   notify: "restart zabbix-{{ zabbix_component }}"
 
-# Zabbix scripts
-- name: Get Zabbix scripts from templates
+- name: zabbix-external | Get Zabbix scripts from templates
   template:
     src: "{{ item }}"
     dest: "{{ zabbix_scripts }}"
     owner: "{{ zabbix_user }}"
     group: "{{ zabbix_user }}"
     mode: 0755
-  with_items:
-    - "{{ zabbix_scripts_templates }}"
-  when: zabbix_scripts_templates is defined and zabbix_scripts_templates|length > 0
+  with_items: "{{ zabbix_scripts_templates|default([]) }}"
   notify: "restart zabbix-{{ zabbix_component }}"
 
-- name: Get Zabbix scripts from git repositories
+- name: zabbix-external | Get Zabbix scripts from git repositories
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest|default(zabbix_scripts) }}"
     version: "{{ item.version|default(omit) }}"
     clone: "{{ item.clone|default(omit) }}"
-    #update: "{{ item.update|default(omit) }}" # omit does not work there?
+    update: "{{ item.update|bool|default(true) }}" # omit does not work there?
     separate_git_dir: "{{ item.separate_git_dir|default(omit) }}"
     track_submodules: "{{ item.track_submodules|default(omit) }}"
     remote: "{{ item.remote|default(omit) }}"
@@ -64,31 +56,26 @@
     depth: "{{ item.depth|default(omit) }}"
     bare: "{{ item.bare|default(omit) }}"
     accept_hostkey: "{{ item.accept_hostkey|default('yes') }}"
-  with_items:
-    - "{{ zabbix_scripts_git }}"
-  when: zabbix_scripts_git is defined and zabbix_scripts_git|length > 0
+  loop: "{{ zabbix_scripts_git|default([]) }}"
   notify: "restart zabbix-{{ zabbix_component }}"
 
-- name: Set up cron job to update cloned git repo for scripts
+- name: zabbix-external | Set up cron job to update cloned git repo for scripts
   cron:
-    name: 'Zabbix Update Scripts'
+    name: 'Zabbix Update Scripts {{ item.repo }}'
     cron_file: "{{ zabbix_external_cron.file }}"
-    user: "root" #security reasons
+    user: '{{ zabbix_external_cron.user|default("root") }}'
     hour: '{{ zabbix_external_cron.hour }}'
     minute: '{{ zabbix_external_cron.minute }}'
     day: "{{ zabbix_external_cron.day }}"
     weekday: "{{ zabbix_external_cron.weekday }}"
     month: "{{ zabbix_external_cron.month }}"
     job: 'cd {{ item.dest|default(zabbix_scripts) }} && git pull >/dev/null 2>&1'
-  with_items:
-    - "{{ zabbix_scripts_git }}"
-  when:
-    - zabbix_external_git_cron
-    - zabbix_scripts_git is defined and zabbix_scripts_git|length > 0
+  loop: "{{ zabbix_scripts_git|default([]) }}"
+  when: zabbix_external_git_cron
 
-- name: Set up cron job to update cloned git repo for includes
+- name: zabbix-external | Set up cron job to update cloned git repo for includes
   cron:
-    name: 'Zabbix Update Includes'
+    name: 'Zabbix Update Includes {{ item.repo }}'
     cron_file: "{{ zabbix_external_cron.file }}"
     user: "{{ zabbix_external_cron.user }}"
     hour: '{{ zabbix_external_cron.hour }}'
@@ -97,8 +84,5 @@
     weekday: "{{ zabbix_external_cron.weekday }}"
     month: "{{ zabbix_external_cron.month }}"
     job: 'cd {{ item.dest|default(zabbix_conf_include_dir) }} && git pull >/dev/null 2>&1'
-  with_items:
-    - "{{ zabbix_include_git }}"
-  when:
-    - zabbix_external_git_cron
-    - zabbix_include_git is defined and zabbix_include_git|length > 0
+  loop: "{{ zabbix_include_git|default([]) }}"
+  when: zabbix_external_git_cron

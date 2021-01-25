@@ -26,7 +26,6 @@ Almost everything this role does is customisable through vars, but you should be
 
 ### TODO
 - CI tests
-- Test zabbix_scripts_git with multiple repositories
 - Manage host with multiple supervised network interfaces
 
 ### Features
@@ -180,13 +179,14 @@ Using `zabbix_include_templates` you can deploy templates configurations files f
 zabbix_include_templates: "../data/zabbix/*.j2"
 ```
 
-Using `zabbix_include_git` you can deploy includes configurations files from git repositories.
+Using `zabbix_include_git` and `zabbix_scripts_git` you can deploy configurations files and script from git repositories. Note that if you deploy more than one of each, you need to set the `dest` sub-parameter as you cannot pull two repositories into a same directory.
 ```
 zabbix_include_git:
   - repo: 'https://foosball.example.org/path/to/repo.git'
     version: dev
   - repo: 'https://gitlab.com/myname/myrepo.git'
     version: prod
+    dest: /etc/zabbix/zabbix_agent.conf.extra
     force: yes
 
 zabbix_scripts_templates:
@@ -198,6 +198,7 @@ zabbix_scripts_git:
     version: dev
   - repo: 'https://gitlab.com/myname/myrepo.git'
     version: prod
+    dest: /etc/zabbix/zabbix-scripts2
     force: yes
 ```
 
