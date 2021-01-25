@@ -17,6 +17,7 @@
     - zabbix_config
 
 - include: agent/config.yml
+  when: zabbix_agent_sudo
   tags:
     - zabbix_agent
     - zabbix_config

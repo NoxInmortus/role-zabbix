@@ -105,6 +105,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_pidfile|STRING|NO|`/run/zabbix/zabbix_{{ zabbix_component }}d.pid`|Zabbix pid file overwrite variable|
 |zabbix_agent_scripts|STRING|NO|`{{ zabbix_scripts }}`|Zabbix agent scripts overwrite variable|
 |zabbix_agent_sudo|BOOL|NO|true|Add all sudoers right to exec scripts in `{{ zabbix_agent_scripts }}`|
+|zabbix_agent_sudo_extra|LIST|NO|None|Extra sudo rights to add for zabbix user|
 |zabbix_agent_tlsconnect|STRING|NO|unencrypted|Zabbix agent tls connection mode|
 |zabbix_agent_tlsaccept|STRING|NO|unencrypted|Zabbix agent tls accept mode|
 |zabbix_agent_pskid|STRING|NO|None|Zabbix agent psk id|

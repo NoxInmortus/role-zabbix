@@ -1,10 +1,40 @@
 ---
-- name: "Add perms sudoers for zabbix scripts"
-  lineinfile:
-    dest: /etc/sudoers
-    line: "zabbix ALL=(ALL) NOPASSWD:{{ zabbix_agent_scripts }}/"
-  when: zabbix_agent_sudo
+- name: zabbix-agent | Ensure sudo package
+  apt:
+    name: sudo
   tags:
     - zabbix_agent
     - zabbix_config
+
+- name: zabbix-agent | Ensure sudoers.d is included in config
+  lineinfile:
+    dest: /etc/sudoers
+    line: "#includedir /etc/sudoers.d"
+    validate: "/usr/sbin/visudo -cf %s"
+  tags:
+    - zabbix_agent
+    - zabbix_config
+
+- name: zabbix-agent | Add sudo right for zabbix
+  lineinfile:
+    dest: /etc/sudoers
+    line: "zabbix ALL=(ALL) NOPASSWD:{{ zabbix_agent_scripts }}/"
   notify: "restart zabbix-{{ zabbix_component }}"
+  tags:
+    - zabbix_agent
+    - zabbix_config
+
+- name: zabbix-agent | Add extra sudo rights
+  copy:
+    dest: "/etc/sudoers.d/zabbix"
+    owner: root
+    group: root
+    mode: 0440
+    validate: "/usr/sbin/visudo -cf %s"
+    content: |
+      {{ item }}
+  with_items: '{{ zabbix_agent_sudo_extra|default([]) }}'
+  notify: "restart zabbix-{{ zabbix_component }}"
+  tags:
+    - zabbix_agent
+    - zabbix_config

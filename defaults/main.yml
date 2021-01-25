@@ -43,6 +43,7 @@ zabbix_agent_debuglevel: "{{ zabbix_debuglevel }}"
 zabbix_agent_pidfile: "{{ zabbix_pidfile }}"
 zabbix_agent_scripts: "{{ zabbix_scripts }}"
 zabbix_agent_sudo: true
+zabbix_agent_sudo_extra: []
 zabbix_agent_tlsconnect: 'unencrypted'
 zabbix_agent_tlsaccept: 'unencrypted'
 zabbix_agent_remotecommands: 0
