@@ -1,16 +1,38 @@
 ---
-- name: Install zabbix packages
+- name: zabbix-install | Setup apt repository pinning
+  copy:
+    dest: /etc/apt/preferences.d/zabbix_{{ zabbix_component }}_repository.pref
+    owner: root
+    group: root
+    mode: 0444
+    content: |
+      # Ansible managed
+      Package: {{ zabbix_component_package }}
+      Pin: origin repo.zabbix.com
+      Pin-Priority: 990
+
+- name: zabbix-install | Setup apt repository pinning
+  copy:
+    dest: /etc/apt/preferences.d/zabbix-{{ zabbix_component }}_version.pref
+    owner: root
+    group: root
+    mode: 0444
+    content: |
+      # Ansible managed
+      Package: {{ zabbix_component_package }}
+      Pin: version {{ zabbix_version }}.*
+      Pin-Priority: 991
+
+- name: zabbix-install | Install zabbix packages
   apt:
     name: "{{ item }}"
-    state: latest
     cache_valid_time: 3600
   with_items:
     - "{{ zabbix_dependencies }}"
     - "{{ zabbix_component_package }}"
 
-- name: Install zabbix-sender
+- name: zabbix-install | Install zabbix-sender
   apt:
     name: zabbix-sender
-    state: latest
     cache_valid_time: 3600
   when: ansible_architecture == "x86_64"

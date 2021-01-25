@@ -30,7 +30,7 @@
     - zabbix_proxy
 
 # Server
-- include: server/main.yml
+- include: server.yml
   when: zabbix_server
   tags:
     - zabbix_install

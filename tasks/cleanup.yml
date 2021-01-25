@@ -2,7 +2,7 @@
 - name: Fetch list of file in config dir
   shell: "ls -1 -d {{ zabbix_conf_dir }}/*"
   register: zabbix_confdir_contents
-  changed_when: False
+  changed_when: false
   when: zabbix_cleanup
 
 - name: Purge unmanaged file in config dir

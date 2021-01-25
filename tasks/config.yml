@@ -1,10 +1,11 @@
 ---
 - name: Make Zabbix directories
   file:
-    path : "{{ item }}"
+    path: "{{ item }}"
     state: directory
     owner: "{{ zabbix_user }}"
     group: "{{ zabbix_user }}"
+    mode: 0755
   with_items:
     - "{{ zabbix_conf_dir }}"
     - "{{ zabbix_conf_include_dir }}"

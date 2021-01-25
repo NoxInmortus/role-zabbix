@@ -1,21 +1,26 @@
 ---
-- include_vars: server.yml
+- name: zabbix-server | include vars server.yml
+  include_vars: server.yml
   when: zabbix_server
   tags: always
 
-- include: validate.yml
+- name: zabbix-server | include validate.yml
+  include: validate.yml
   tags: always
 
-- include: install.yml
+- name: zabbix-server | include install.yml
+  include: install.yml
   tags:
     - zabbix_install
 
-- include: server/import.yml
+- name: zabbix-server | include server/import.yml
+  include: server/import.yml
   when: zabbix_server_mysql_import
   tags:
     - zabbix_import
 
-- include: external.yml
+- name: zabbix-server | include external.yml
+  include: external.yml
   tags:
     - zabbix_server
     - zabbix_config

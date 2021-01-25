@@ -1,12 +1,10 @@
 ---
-- name: Manage zabbix proxies
-  local_action:
-    module: zabbix_proxy
+- name: zabbix-api | Manage zabbix proxies
+  zabbix_proxy:
     server_url: "{{ zabbix_api.url }}"
     login_user: "{{ zabbix_api.username }}"
     login_password: "{{ zabbix_api.password }}"
     proxy_name: "{{ zabbix_hostname }}"
-    #proxy_address: "{{ zabbix_api_proxy_ip|default(omit) }}" # Not available yet (ansible 2.10)
     description: "{{ zabbix_api_host.description|default(omit) }}"
     status: "{{ zabbix_api_host.proxy_status|default(omit) }}"
     state: "{{ zabbix_api_host.proxy_state|default(omit) }}"
@@ -23,3 +21,32 @@
       ip: "{{ zabbix_api_host_interfaces.ip }}"
       dns: "{{ zabbix_api_host_interfaces.dns }}"
       port: "{{ zabbix_api_host_interfaces.port }}"
+  when: ansible_version.full is version('2.10', '<=')
+  delegate_to: localhost
+
+# Adds proxy_address parameter available with ansible 2.10
+- name: zabbix-api | Manage zabbix proxies
+  zabbix_proxy:
+    server_url: "{{ zabbix_api.url }}"
+    login_user: "{{ zabbix_api.username }}"
+    login_password: "{{ zabbix_api.password }}"
+    proxy_name: "{{ zabbix_hostname }}"
+    proxy_address: "{{ zabbix_api_proxy_ip|default(omit) }}"
+    description: "{{ zabbix_api_host.description|default(omit) }}"
+    status: "{{ zabbix_api_host.proxy_status|default(omit) }}"
+    state: "{{ zabbix_api_host.proxy_state|default(omit) }}"
+    tls_accept: "{{ zabbix_proxy_tlsaccept|default(omit) }}"
+    tls_connect: "{{ zabbix_proxy_tlsconnect|default(omit) }}"
+    tls_psk: "{{ zabbix_proxy_psksecret|default(omit) }}"
+    tls_psk_identity: "{{ zabbix_proxy_pskid|default(omit) }}"
+    tls_subject: "{{ zabbix_api_host.tls_subject|default(omit) }}"
+    validate_certs: "{{ zabbix_api_host.validate_certs|default(omit) }}"
+    interface:
+      type: "{{ zabbix_api_host_interfaces.type }}"
+      main: "{{ zabbix_api_host_interfaces.main }}"
+      useip: "{{ zabbix_api_host_interfaces.useip }}"
+      ip: "{{ zabbix_api_host_interfaces.ip }}"
+      dns: "{{ zabbix_api_host_interfaces.dns }}"
+      port: "{{ zabbix_api_host_interfaces.port }}"
+  when: ansible_version.full is version('2.10', '>=')
+  delegate_to: localhost

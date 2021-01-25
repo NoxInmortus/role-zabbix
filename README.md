@@ -25,8 +25,8 @@ Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable 
 Almost everything this role does is customisable through vars, but you should be able to use it with a very small amount of vars (compared to the available ones).
 
 ### TODO
-- CI tests
 - Manage host with multiple supervised network interfaces
+- Split zabbix_api_host variable
 
 ### Features
 - Install Zabbix agent/proxy/server

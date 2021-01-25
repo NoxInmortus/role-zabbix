@@ -1,20 +1,21 @@
 ---
 galaxy_info:
-  author:
-    - NoxInmortus (Alban E.G.)
-  description:
+  author: NoxInmortus
+  company: Imperium
   license: MIT
+  description: Role to setup Zabbix components.
   min_ansible_version: 2.5
   platforms:
     - name: Debian
       versions:
-      - jessie
-      - stretch
-      - buster
+        - jessie
+        - stretch
+        - buster
     - name: Raspbian
       versions:
-      - jessie
-      - stretch
-      - buster
-  categories:
+        - jessie
+        - stretch
+        - buster
+  galaxy_tags:
     - monitoring
+dependencies: []

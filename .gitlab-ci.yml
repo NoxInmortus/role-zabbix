@@ -1,0 +1,20 @@
+---
+stages:
+  - validate
+
+.template:
+  interruptible: true
+  stage: validate
+  tags:
+    - ansible
+
+yamllint:
+  extends: .template
+  script:
+    - yamllint -c .yamllint .
+
+ansible-lint:
+  extends: .template
+  script:
+    - cd tests/
+    - ansible-lint --parseable-severity -x deprecated -v playbook.yml

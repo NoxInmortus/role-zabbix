@@ -45,7 +45,7 @@
     dest: "{{ item.dest|default(zabbix_scripts) }}"
     version: "{{ item.version|default(omit) }}"
     clone: "{{ item.clone|default(omit) }}"
-    update: "{{ item.update|bool|default(true) }}" # omit does not work there?
+    update: "{{ item.update|bool|default(true) }}"  # omit does not work there?
     separate_git_dir: "{{ item.separate_git_dir|default(omit) }}"
     track_submodules: "{{ item.track_submodules|default(omit) }}"
     remote: "{{ item.remote|default(omit) }}"
