@@ -24,9 +24,11 @@ Furthermore, my goal is to make the cleanest, fastest, easily-readable & usable 
 
 Almost everything this role does is customisable through vars, but you should be able to use it with a very small amount of vars (compared to the available ones).
 
+### Breaking Changes
+- [26/01/2021] Splitted `zabbix_api_host_groups` and `zabbix_api_host_templates` from `zabbix_api_host` variable for simpler usage. Also changed `zabbix_api_host.inventory_mode` default to `automatic`.
+
 ### TODO
 - Manage host with multiple supervised network interfaces
-- Split zabbix_api_host variable
 
 ### Features
 - Install Zabbix agent/proxy/server
@@ -104,11 +106,11 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_pidfile|STRING|NO|`/run/zabbix/zabbix_{{ zabbix_component }}d.pid`|Zabbix pid file overwrite variable|
 |zabbix_agent_scripts|STRING|NO|`{{ zabbix_scripts }}`|Zabbix agent scripts overwrite variable|
 |zabbix_agent_sudo|BOOL|NO|true|Add all sudoers right to exec scripts in `{{ zabbix_agent_scripts }}`|
-|zabbix_agent_sudo_extra|LIST|NO|None|Extra sudo rights to add for zabbix user|
+|zabbix_agent_sudo_extra|LIST|NO|NONE|Extra sudo rights to add for zabbix user|
 |zabbix_agent_tlsconnect|STRING|NO|unencrypted|Zabbix agent tls connection mode|
 |zabbix_agent_tlsaccept|STRING|NO|unencrypted|Zabbix agent tls accept mode|
-|zabbix_agent_pskid|STRING|NO|None|Zabbix agent psk id|
-|zabbix_agent_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
+|zabbix_agent_pskid|STRING|NO|NONE|Zabbix agent psk id|
+|zabbix_agent_psksecret|STRING|NO|NONE|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 |zabbix_agent_remotecommands|INT|`0`|Enable remote commands|
 |zabbix_agent_logremotecommands|INT|`0`|Log remote commands|
 |zabbix_agent_startagents|INT|`8`|StartAgents parameter|
@@ -129,14 +131,14 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_proxy_dbschema|STRING|NO|/usr/share/doc/zabbix-proxy-mysql/schema.sql.gz|Zabbix proxy db schema path|
 |zabbix_proxy_tlsconnect|STRING|NO|unencrypted|Zabbix proxy tls connection mode|
 |zabbix_proxy_tlsaccept|STRING|NO|unencrypted|Zabbix proxy tls accept mode|
-|zabbix_proxy_pskid|STRING|NO|None|Zabbix proxy psk id|
-|zabbix_proxy_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
+|zabbix_proxy_pskid|STRING|NO|NONE|Zabbix proxy psk id|
+|zabbix_proxy_psksecret|STRING|NO|NONE|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 |zabbix_proxy_dbsocket|STRING|NO|`{{ zabbix_dbsocket }}`|Zabbix db socket for mysql connection overwrite variable|
 |zabbix_proxy_dbport|INT|NO|`{{ zabbix_dbport }}`|Zabbix db port for mysql connection overwrite variable|
 |zabbix_proxy_dbhost|INT|NO|`{{ zabbix_dbhost }}`|Database hostname for mysql schema import overwrite variable|
 |zabbix_proxy_dbname|STRING|NO|`{{ zabbix_dbname }}`|Database name for mysql schema import overwrite variable|
 |zabbix_proxy_dbuser|STRING|NO|`{{ zabbix_dbuser }}`|Database user for mysql schema import overwrite variable|
-|zabbix_proxy_dbpassword|STRING|PERHAPS|None|Database password for mysql schema import|
+|zabbix_proxy_dbpassword|STRING|PERHAPS|NONE|Database password for mysql schema import|
 |zabbix_proxy_remotecommands|INT|`0`|Enable remote commands|
 |zabbix_proxy_logremotecommands|INT|`0`|Log remote commands|
 
@@ -144,18 +146,18 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |-|-|-|-|-|
 |zabbix_server_mysql_import|BOOL|NO|false|Import server mysql schema|
 |zabbix_server_conf_default|DICT|NO|See defaults|Defaults zabbix server variables|
-|zabbix_server_conf|DICT|PERHAPS|None|Additional zabbix server variables|
-|zabbix_server_dbpassword|STRING|YES|None|MySQL DBPassword for zabbix server|
-|zabbix_server_psksecret|STRING|NO|None|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
+|zabbix_server_conf|DICT|PERHAPS|NONE|Additional zabbix server variables|
+|zabbix_server_dbpassword|STRING|YES|NONE|MySQL DBPassword for zabbix server|
+|zabbix_server_psksecret|STRING|NO|NONE|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
 
 |EXTERNAL VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
-|zabbix_agent_include_templates|STRING|NO|None|Do it my way, use fileglob to deploy templates of includes configurations files for agent|
-|zabbix_proxy_include_templates|STRING|NO|None|Do it my way, use fileglob to deploy templates of includes configurations files for proxy|
-|zabbix_server_include_templates|STRING|NO|None|Do it my way, use fileglob to deploy templates of includes configurations files for server|
-|zabbix_include_git|DICT|NO|None|Get Zabbix includes configurations from git repositories|
-|zabbix_scripts_templates|LIST|NO|None|Deploy Zabbix scripts from templates|
-|zabbix_scripts_git|DICT|NO|None|Get zabbix scripts from git repostories|
+|zabbix_agent_include_templates|STRING|NO|NONE|Do it my way, use fileglob to deploy templates of includes configurations files for agent|
+|zabbix_proxy_include_templates|STRING|NO|NONE|Do it my way, use fileglob to deploy templates of includes configurations files for proxy|
+|zabbix_server_include_templates|STRING|NO|NONE|Do it my way, use fileglob to deploy templates of includes configurations files for server|
+|zabbix_include_git|DICT|NO|NONE|Get Zabbix includes configurations from git repositories|
+|zabbix_scripts_templates|LIST|NO|NONE|Deploy Zabbix scripts from templates|
+|zabbix_scripts_git|DICT|NO|NONE|Get zabbix scripts from git repostories|
 |zabbix_external_cron|DICT|NO|See defaults|DICT for crons configuration|
 |zabbix_external_git_cron|BOOL|NO|`true`|Regular update of scripts/templates cloned through git|
 
@@ -165,10 +167,14 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_api.zabbix_url|STRING|YES|NONE|Zabbix URL for zabbix api connection|
 |zabbix_api.zabbix_api_user|STRING|YES|NONE|Zabbix user for zabbix api connection|
 |zabbix_api.zabbix_api_password|STRING|YES|NONE|Zabbix password for zabbix api connection|
-|zabbix_api_host_ip|STRING|NO|`"{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"`|Zabbix host listening IP address|
 |zabbix_api_maintenance|DICT|NO|NONE|Dict to defined maintenance windows|
-|zabbix_api_host_interfaces|DICT|NO|See defaults/main.yml|Dict for zabbix host interfaces parameters|
+|zabbix_api_proxy_ip|STRING|Fill proxy_address detail for zabbix-proxy (available only with ansible >= 2.10)|
+|zabbix_screen|LIST of DICT|NO|NONE|List of dist to defined zabbix screens|
+|zabbix_api_host_ip|STRING|NO|`"{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"`|Zabbix host listening IP address|
 |zabbix_api_host|DICT|YES|See defaults/main.yml|Dict for zabbix host parameters, see https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html for configuration|
+|zabbix_api_host_interfaces|DICT|NO|See defaults/main.yml|Dict for zabbix host interfaces parameters|
+|zabbix_api_host_groups|LIST|NO|NONE|Zabbix groups to create and add to zabbix host|
+|zabbix_api_host_templates|LIST|NO|NONE|Zabbix templates to add to zabbix host|
 |zabbix_api_host.proxy_status|STRING|NO|NONE|Zabbix proxy mode, can be `active` or `passive`|
 |zabbix_api_host.proxy_state|STRING|NO|NONE|Zabbi proxy state, can be `present` or `absent`|
 
