@@ -4,6 +4,8 @@ extends: default
 ignore: |
   .cache/
   tests/
+  .chglog
+  .git
 
 rules:
   line-length: disable

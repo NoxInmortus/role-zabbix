@@ -268,7 +268,7 @@ You can use  `--tags` and `--skip-tags`
 - https://docs.ansible.com/ansible/latest/modules/zabbix_proxy_module.html
 - https://docs.ansible.com/ansible/latest/modules/zabbix_screen_module.html
 - https://docs.ansible.com/ansible/latest/modules/zabbix_maintenance_module.html
-- Changelog made with : https://github.com/rustic-games/jilu
+- Changelog made with : https://github.com/git-chglog/git-chglog
 
 ## Licence
 MIT view [LICENSE](LICENSE)

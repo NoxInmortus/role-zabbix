@@ -1,12 +1,14 @@
 ---
 stages:
   - validate
+  - tag
+  - changelog
 
 .template:
   interruptible: true
   stage: validate
   tags:
-    - ansible
+    - ansible-ci
 
 yamllint:
   extends: .template
@@ -18,3 +20,16 @@ ansible-lint:
   script:
     - cd tests/
     - ansible-lint --parseable-severity -x deprecated -v playbook.yml
+
+include:
+  - project: 'sysadmins/templates-ci'
+    ref: master
+    file:
+      - 'create_tag.yml'
+      - 'create_changelog.yml'
+    interruptible: true
+    tags:
+      - ansible-ci
+    only:
+      refs:
+        - master
