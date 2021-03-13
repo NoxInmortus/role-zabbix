@@ -1,39 +1,26 @@
-# Changelog
+<a name="unreleased"></a>
+## [Unreleased]
 
-All notable changes to this project are documented in this file.
 
-The format is based on [Keep a Changelog], and this project adheres to
-[Semantic Versioning]. The file is auto-generated using [Conventional Commits].
+<a name="1.0.1"></a>
+## 1.0.1 - 2021-03-13
+### Added
+- Improved CI tasks and fixed several unseen issues
+- `bulk` sub-parameter for zabbix_host api task
+- StartAgents parameter for zabbix agent
+- ServerActive variable for agent & proxy
+- EnableRemoteCommands and LogRemoteCommands parameters & Manage zabbix proxies through api
+- Install zabbix-sender package
 
-[keep a changelog]: https://keepachangelog.com/en/1.0.0/
-[semantic versioning]: https://semver.org/spec/v2.0.0.html
-[conventional commits]: https://www.conventionalcommits.org/en/v1.0.0-beta.4/
+### Changed
+- Manage changelog with git-chglog
+- Removed always tags and fixed missing tags
+- [Breaking Changes] Splitted `zabbix_api_host_groups` and `zabbix_api_host_templates` from `zabbix_api_host` variable for simpler usage. Also changed `zabbix_api_host.inventory_mode` default to `automatic`
+- Improved and cleaned tasks/external.yml
+- Improved agent/config.yml task & added zabbix_agent_sudo_extra variable
 
-## Overview
+### Fixed
+- Regression, removed ServerActive parameter from zabbix proxy
 
-- Added: `bulk` sub-parameter for zabbix_host api task ([`425c01b`])
-- feat: Crons to update git repo (scripts/includes) ([`d82014d`])
-- feat: Manage zabbix proxies through api ([`7ed2b48`])
-- feat: Add EnableRemoteCommands and LogRemoteCommands parameters ([`193a113`])
-- fixes: Api task, psk parameters defaults ([`9f5ce6f`])
-- docs: Update README ([`8f09744`])
-- fixes: Zabbix Agent tls psksecret and api stuff ([`4a1abb1`])
-- fixes: zombie code in api.yml task ([`aef5c2d`])
-- test: api management ([`ea3b0c8`])
-- fixes: zabbx proxy ([`1dccb85`])
-- refactor: Moved included_vars, changed tags, fixed stuff on external tasks ([`1bc0483`])
-- fixes: agent/proxy tests ([`d9fa3ae`])
 
-<!-- [commits] -->
-
-[`d82014d`]: #/commit/d82014df0b034e111bf898d3d99157c28b9c8133
-[`7ed2b48`]: #/commit/7ed2b488975c3beaba1e116e26413e9e28022ba9
-[`193a113`]: #/commit/193a1133a36870cc1cfa1a3300b670b0e5b775a5
-[`9f5ce6f`]: #/commit/9f5ce6fd7df16196426ed8d256122adeded7138a
-[`8f09744`]: #/commit/8f09744ae83d94d68330ee38e00169c0b39a2b01
-[`4a1abb1`]: #/commit/4a1abb15d0053c3729dc354b34d240e2499e77dc
-[`aef5c2d`]: #/commit/aef5c2dd6e4f24967433041e810a4fe35413317e
-[`ea3b0c8`]: #/commit/ea3b0c8347a7403f3c8d613e3fa462e8abac2daa
-[`1dccb85`]: #/commit/1dccb85bcfebc91342a0e791b0873e08ec319932
-[`1bc0483`]: #/commit/1bc048309e2c148e24aa46c8b9b8f47193da5d80
-[`d9fa3ae`]: #/commit/d9fa3ae9d01db3f9268b2031f804f3abada809cf
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.1...HEAD
