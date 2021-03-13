@@ -2,11 +2,19 @@
 - name: zabbix-agent | include vars/agent.yml
   include_vars: agent.yml
   when: zabbix_agent
-  tags: always
+  tags:
+    - zabbix_agent
+    - zabbix_install
+    - zabbix_config
+    - zabbix_external
 
 - name: zabbix-agent | include validate.yml
   include: validate.yml
-  tags: always
+  tags:
+    - zabbix_agent
+    - zabbix_install
+    - zabbix_config
+    - zabbix_external
 
 - name: zabbix-agent | include install.yml
   include: install.yml

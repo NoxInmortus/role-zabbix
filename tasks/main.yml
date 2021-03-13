@@ -20,6 +20,7 @@
     - zabbix_install
     - zabbix_config
     - zabbix_agent
+    - zabbix_external
 
 # Proxy
 - include: proxy.yml
@@ -28,6 +29,7 @@
     - zabbix_install
     - zabbix_config
     - zabbix_proxy
+    - zabbix_import
 
 # Server
 - include: server.yml
@@ -36,6 +38,7 @@
     - zabbix_install
     - zabbix_config
     - zabbix_server
+    - zabbix_import
 
 # All
 - include: cleanup.yml

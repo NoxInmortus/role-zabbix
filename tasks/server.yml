@@ -2,11 +2,19 @@
 - name: zabbix-server | include vars server.yml
   include_vars: server.yml
   when: zabbix_server
-  tags: always
+  tags:
+    - zabbix_server
+    - zabbix_config
+    - zabbix_external
+    - zabbix_import
 
 - name: zabbix-server | include validate.yml
   include: validate.yml
-  tags: always
+  tags:
+    - zabbix_server
+    - zabbix_config
+    - zabbix_external
+    - zabbix_import
 
 - name: zabbix-server | include install.yml
   include: install.yml
