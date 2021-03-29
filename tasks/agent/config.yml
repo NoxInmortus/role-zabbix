@@ -15,16 +15,7 @@
     - zabbix_agent
     - zabbix_config
 
-- name: zabbix-agent | Add sudo right for zabbix
-  lineinfile:
-    dest: /etc/sudoers
-    line: "zabbix ALL=(ALL) NOPASSWD:{{ zabbix_agent_scripts }}/"
-  notify: "restart zabbix-{{ zabbix_component }}"
-  tags:
-    - zabbix_agent
-    - zabbix_config
-
-- name: zabbix-agent | Add extra sudo rights
+- name: zabbix-agent | Add sudo rights
   copy:
     dest: "/etc/sudoers.d/zabbix"
     owner: root
@@ -32,9 +23,10 @@
     mode: 0440
     validate: "/usr/sbin/visudo -cf %s"
     content: |
+      zabbix ALL=(ALL) NOPASSWD:{{ zabbix_agent_scripts }}
+      {% for item in zabbix_agent_sudo_extra|default([]) %}
       {{ item }}
-  with_items: '{{ zabbix_agent_sudo_extra|default([]) }}'
-  notify: "restart zabbix-{{ zabbix_component }}"
+      {% endfor %}
   tags:
     - zabbix_agent
     - zabbix_config
