@@ -2,6 +2,18 @@
 ## [Unreleased]
 
 
+<a name="1.0.2"></a>
+## [1.0.2] - 2021-03-29
+### Changed
+- Updated README.md
+- Unified sudo rights in single file
+- Improved gitlab-ci
+
+### Fixed
+- Regression, zabbix_api tasks were not running following 2b43f85
+- Apt pin files not standardized
+
+
 <a name="1.0.1"></a>
 ## 1.0.1 - 2021-03-13
 ### Added
@@ -23,4 +35,5 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.1...HEAD
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...HEAD
+[1.0.2]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.1...1.0.2
