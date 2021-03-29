@@ -13,7 +13,7 @@
 
 - name: zabbix-install | Setup apt repository pinning
   copy:
-    dest: /etc/apt/preferences.d/zabbix-{{ zabbix_component }}_version.pref
+    dest: /etc/apt/preferences.d/zabbix_{{ zabbix_component }}_version.pref
     owner: root
     group: root
     mode: 0444
