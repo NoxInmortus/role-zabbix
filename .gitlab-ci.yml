@@ -21,6 +21,12 @@ ansible-lint:
     - cd tests/
     - ansible-lint --parseable-severity -x deprecated -v playbook.yml
 
+ansible-syntax-check:
+  extends: .template
+  script:
+    - cd tests/
+    - ansible-playbook --syntax-check playbook.yml
+
 include:
   - project: 'sysadmins/templates-ci'
     ref: master

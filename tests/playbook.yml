@@ -2,4 +2,4 @@
 - hosts: localhost
   gather_facts: yes
   roles:
-    - { role: zabbix }
+    - { role: default }
