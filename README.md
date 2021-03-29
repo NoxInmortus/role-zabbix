@@ -111,9 +111,9 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_tlsaccept|STRING|NO|unencrypted|Zabbix agent tls accept mode|
 |zabbix_agent_pskid|STRING|NO|NONE|Zabbix agent psk id|
 |zabbix_agent_psksecret|STRING|NO|NONE|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
-|zabbix_agent_remotecommands|INT|`0`|Enable remote commands|
-|zabbix_agent_logremotecommands|INT|`0`|Log remote commands|
-|zabbix_agent_startagents|INT|`8`|StartAgents parameter|
+|zabbix_agent_remotecommands|INT|NO|`0`|Enable remote commands|
+|zabbix_agent_logremotecommands|NO|INT|`0`|Log remote commands|
+|zabbix_agent_startagents|INT|NO|`8`|StartAgents parameter|
 
 |PROXY VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -139,8 +139,8 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_proxy_dbname|STRING|NO|`{{ zabbix_dbname }}`|Database name for mysql schema import overwrite variable|
 |zabbix_proxy_dbuser|STRING|NO|`{{ zabbix_dbuser }}`|Database user for mysql schema import overwrite variable|
 |zabbix_proxy_dbpassword|STRING|PERHAPS|NONE|Database password for mysql schema import|
-|zabbix_proxy_remotecommands|INT|`0`|Enable remote commands|
-|zabbix_proxy_logremotecommands|INT|`0`|Log remote commands|
+|zabbix_proxy_remotecommands|INT|NO|`0`|Enable remote commands|
+|zabbix_proxy_logremotecommands|INT|NO|`0`|Log remote commands|
 
 |SERVER VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -168,7 +168,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_api.zabbix_api_user|STRING|YES|NONE|Zabbix user for zabbix api connection|
 |zabbix_api.zabbix_api_password|STRING|YES|NONE|Zabbix password for zabbix api connection|
 |zabbix_api_maintenance|DICT|NO|NONE|Dict to defined maintenance windows|
-|zabbix_api_proxy_ip|STRING|Fill proxy_address detail for zabbix-proxy (available only with ansible >= 2.10)|
+|zabbix_api_proxy_ip|STRING|NO|NONE|Fill proxy_address detail for zabbix-proxy (available only with ansible >= 2.10)|
 |zabbix_screen|LIST of DICT|NO|NONE|List of dist to defined zabbix screens|
 |zabbix_api_host_ip|STRING|NO|`"{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"`|Zabbix host listening IP address|
 |zabbix_api_host|DICT|YES|See defaults/main.yml|Dict for zabbix host parameters, see https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html for configuration|
@@ -218,12 +218,14 @@ zabbix_api:
 # Specify ip pub if behind a router
 zabbix_api_host_ip: 163.172.145.120
 
-zabbix_api_host:
-  groups:
+zabbix_api_host_groups:
     - MyNewGroup
-  templates:
+
+zabbix_api_host_templates
     - OS_LINUX
     - MY_CUSTOM_TEMPLATE
+
+zabbix_api_host:
   tls_accept: 2
   tls_connect: 2
 
