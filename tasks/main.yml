@@ -52,6 +52,6 @@
 
 # Api
 - include: api.yml
-  when: zabbix_api_host is defined and zabbix_api_host|length > 0
+  when: zabbix_api_host_groups is defined and zabbix_api_host_groups|length > 0
   tags:
     - zabbix_api
