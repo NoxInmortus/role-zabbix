@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="1.0.3"></a>
+## [1.0.3] - 2021-04-02
+### Added
+- zabbix_api_host_dns variable
+
+
 <a name="1.0.2"></a>
 ## [1.0.2] - 2021-03-29
 ### Changed
@@ -35,5 +41,6 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...HEAD
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.3...HEAD
+[1.0.3]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...1.0.3
 [1.0.2]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.1...1.0.2
