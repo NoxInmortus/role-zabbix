@@ -171,6 +171,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_api_proxy_ip|STRING|NO|NONE|Fill proxy_address detail for zabbix-proxy (available only with ansible >= 2.10)|
 |zabbix_screen|LIST of DICT|NO|NONE|List of dist to defined zabbix screens|
 |zabbix_api_host_ip|STRING|NO|`"{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"`|Zabbix host listening IP address|
+|zabbix_api_host_dns|STRING|NO|`"{{ ansible_fqdn }}"`|Zabbix host listening DNS address|
 |zabbix_api_host|DICT|YES|See defaults/main.yml|Dict for zabbix host parameters, see https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html for configuration|
 |zabbix_api_host_interfaces|DICT|NO|See defaults/main.yml|Dict for zabbix host interfaces parameters|
 |zabbix_api_host_groups|LIST|NO|NONE|Zabbix groups to create and add to zabbix host|
