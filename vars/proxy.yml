@@ -4,7 +4,7 @@ zabbix_conf_file: "/etc/zabbix/zabbix_{{ zabbix_component }}.conf"
 zabbix_tls_psksecret: "{{ zabbix_proxy_psksecret|default(omit) }}"
 zabbix_include_templates: "{{ zabbix_proxy_include_templates|default(omit) }}"
 zabbix_component_dependencies:
-  - python-mysqldb
+  - python3-mysqldb
   - zabbix-get
 zabbix_component_package: zabbix-proxy-mysql
 zabbix_component_asserts:
