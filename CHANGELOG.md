@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="1.0.4"></a>
+## [1.0.4] - 2021-04-16
+### Changed
+- Use python3 for zabbix_component_dependencies
+
+### Fixed
+- sudo right for zabbix_agent_scripts incorrect
+
+
 <a name="1.0.3"></a>
 ## [1.0.3] - 2021-04-02
 ### Added
@@ -41,6 +50,7 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.3...HEAD
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.4...HEAD
+[1.0.4]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.3...1.0.4
 [1.0.3]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...1.0.3
 [1.0.2]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.1...1.0.2
