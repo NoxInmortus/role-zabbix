@@ -3,6 +3,7 @@
   pip:
     name: zabbix-api
   delegate_to: localhost
+  run_once: true
   tags:
     - zabbix_api
     - zabbix_api_hosts
