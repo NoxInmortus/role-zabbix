@@ -2,29 +2,21 @@
 ## [Unreleased]
 
 
-<a name="1.0.4"></a>
-## [1.0.4] - 2021-04-16
-### Changed
-- Use python3 for zabbix_component_dependencies
-
-### Fixed
-- sudo right for zabbix_agent_scripts incorrect
-
-
-<a name="1.0.3"></a>
-## [1.0.3] - 2021-04-02
+<a name="1.0.2"></a>
+## [1.0.2] - 2021-05-24
 ### Added
 - zabbix_api_host_dns variable
 
-
-<a name="1.0.2"></a>
-## [1.0.2] - 2021-03-29
 ### Changed
+- Improved CI
+- Improved zabbix-api package install with run_once
+- Use python3 for zabbix_component_dependencies
 - Updated README.md
 - Unified sudo rights in single file
 - Improved gitlab-ci
 
 ### Fixed
+- sudo right for zabbix_agent_scripts incorrect
 - Regression, zabbix_api tasks were not running following 2b43f85
 - Apt pin files not standardized
 
@@ -50,7 +42,5 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.4...HEAD
-[1.0.4]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.3...1.0.4
-[1.0.3]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...1.0.3
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...HEAD
 [1.0.2]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.1...1.0.2
