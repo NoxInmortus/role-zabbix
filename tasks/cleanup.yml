@@ -13,4 +13,4 @@
   when:
     - zabbix_cleanup
     - item not in zabbix_expected_files
-  notify: restart zabbix-agent
+  notify: "restart zabbix-{{ zabbix_component }}"
