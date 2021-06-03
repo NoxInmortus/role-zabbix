@@ -85,7 +85,7 @@ zabbix_server_conf_default:
   SocketDir: "/var/run/zabbix"
   PidFile: "{{ zabbix_pidfile }}"
   DBHost: "{{ zabbix_server_dbhost|default(zabbix_dbhost) }}"
-  DBName: "{{ zabbix_server_dbname[default(zabbix_dbname) }}"
+  DBName: "{{ zabbix_server_dbname|default(zabbix_dbname) }}"
   DBUser: "{{ zabbix_server_dbuser|default(zabbix_dbuser) }}"
   DBPassword: "{{ zabbix_server_dbpassword }}"
   DBSocket: "{{ zabbix_dbsocket }}"
