@@ -75,6 +75,7 @@ zabbix_proxy_logremotecommands: 0
 # Server
 zabbix_server_mysql_import: false
 zabbix_server_dbschema: "/usr/share/doc/zabbix-sql-scripts/mysql/create.sql.gz"
+zabbix_server_conf: []
 zabbix_server_conf_default:
   ListenPort: "{{ zabbix_listenport }}"
   LogType: "file"
@@ -83,16 +84,16 @@ zabbix_server_conf_default:
   DebugLevel: "{{ zabbix_debuglevel }}"
   SocketDir: "/var/run/zabbix"
   PidFile: "{{ zabbix_pidfile }}"
-  DBHost: "{{ zabbix_dbhost }}"
-  DBName: "{{ zabbix_dbname }}"
-  DBUser: "{{ zabbix_dbuser }}"
+  DBHost: "{{ zabbix_server_dbhost|default(zabbix_dbhost) }}"
+  DBName: "{{ zabbix_server_dbname[default(zabbix_dbname) }}"
+  DBUser: "{{ zabbix_server_dbuser|default(zabbix_dbuser) }}"
   DBPassword: "{{ zabbix_server_dbpassword }}"
   DBSocket: "{{ zabbix_dbsocket }}"
   DBPort: "{{ zabbix_dbport }}"
   Timeout: "{{ zabbix_timeout }}"
-  UnreachablePeriod: "{{ zabbix_server_unreachableperiod }}"
-  UnavailableDelay: "{{ zabbix_server_unavailabledelay }}"
-  UnreachableDelay: "{{ zabbix_server_unreachabledelay }}"
+  UnreachablePeriod: "{{ zabbix_server_unreachableperiod|default(45) }}"
+  UnavailableDelay: "{{ zabbix_server_unavailabledelay|default(60) }}"
+  UnreachableDelay: "{{ zabbix_server_unreachabledelay|default(15) }}"
   ExternalScripts: "{{ zabbix_scripts }}"
   FpingLocation: "/usr/bin/fping"
   Fping6Location: "/usr/bin/fping6"
