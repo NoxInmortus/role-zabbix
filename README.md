@@ -145,6 +145,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |SERVER VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
 |zabbix_server_mysql_import|BOOL|NO|false|Import server mysql schema|
+|zabbix_server_dbschema|STRING|NO|/usr/share/doc/zabbix-sql-scripts/mysql/create.sql.gz|Zabbix server db schema path|
 |zabbix_server_conf_default|DICT|NO|See defaults|Defaults zabbix server variables|
 |zabbix_server_conf|DICT|PERHAPS|NONE|Additional zabbix server variables|
 |zabbix_server_dbpassword|STRING|YES|NONE|MySQL DBPassword for zabbix server|

@@ -74,6 +74,7 @@ zabbix_proxy_logremotecommands: 0
 
 # Server
 zabbix_server_mysql_import: false
+zabbix_server_dbschema: "/usr/share/doc/zabbix-sql-scripts/mysql/create.sql.gz"
 zabbix_server_conf_default:
   ListenPort: "{{ zabbix_listenport }}"
   LogType: "file"
