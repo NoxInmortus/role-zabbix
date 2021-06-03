@@ -2,6 +2,13 @@
 ## [Unreleased]
 
 
+<a name="1.0.6"></a>
+## [1.0.6] - 2021-06-03
+### Fixed
+- Cleanup task with wrong handler
+- Missing zabbix_server_dbschema default variable
+
+
 <a name="1.0.5"></a>
 ## [1.0.5] - 2021-05-24
 ### Added
@@ -64,7 +71,8 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.5...HEAD
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.6...HEAD
+[1.0.6]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.5...1.0.6
 [1.0.5]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.4...1.0.5
 [1.0.4]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.3...1.0.4
 [1.0.3]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.2...1.0.3
