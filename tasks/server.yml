@@ -10,7 +10,7 @@
     - zabbix_import
 
 - name: zabbix-server | include vars version_5.x.yml
-  include_vars: version_5.x.yml
+  include_vars: server_5.x.yml
   when: "zabbix_version is version_compare(5.0, '>=')"
   tags:
     - zabbix_install
@@ -33,8 +33,8 @@
     - zabbix_install
     - zabbix_server
 
-- name: zabbix-server | include server/import.yml
-  include: server/import.yml
+- name: zabbix-server | include import.yml
+  include: import.yml
   when: zabbix_server_mysql_import
   tags:
     - zabbix_import

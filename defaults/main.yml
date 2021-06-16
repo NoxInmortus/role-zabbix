@@ -19,11 +19,6 @@ zabbix_logfilesize: 0
 zabbix_debuglevel: 1
 zabbix_timeout: 30
 zabbix_scripts: "/etc/zabbix/zabbix-scripts"
-zabbix_dbsocket: "/var/run/mysqld/mysqld.sock"
-zabbix_dbport: 3306
-zabbix_dbhost: '127.0.0.1'
-zabbix_dbname: "zabbix_{{ zabbix_component }}"
-zabbix_dbuser: "zabbix_{{ zabbix_component }}"
 zabbix_user: "zabbix"
 zabbix_tls_dir: "/etc/zabbix/tls"
 zabbix_tls_pskfile: '/etc/zabbix/tls/psk.secret'
@@ -67,11 +62,6 @@ zabbix_proxy_unreacheableperiod: "{{ zabbix_unreacheableperiod }}"
 zabbix_proxy_dbschema: "/usr/share/doc/zabbix-proxy-mysql/schema.sql.gz"
 zabbix_proxy_tlsconnect: 'unencrypted'
 zabbix_proxy_tlsaccept: 'unencrypted'
-zabbix_proxy_dbsocket: "{{ zabbix_dbsocket }}"
-zabbix_proxy_dbport: "{{ zabbix_dbport }}"
-zabbix_proxy_dbhost: "{{ zabbix_dbhost }}"
-zabbix_proxy_dbname: "{{ zabbix_dbname }}"
-zabbix_proxy_dbuser: "{{ zabbix_dbuser }}"
 zabbix_proxy_remotecommands: 0
 zabbix_proxy_logremotecommands: 0
 

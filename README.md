@@ -83,11 +83,6 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_debuglevel|INT|NO|1|Zabbix debug log level|
 |zabbix_timeout|INT|NO|30|Zabbix timeout|
 |zabbix_scripts|STRING|NO|/etc/zabbix/zabbix-scripts|Zabbix scripts path|
-|zabbix_dbsocket|STRING|NO|/var/run/mysqld/mysqld.sock|Zabbix db socket for mysql connections|
-|zabbix_dbport|INT|NO|3306|Zabbix db port for mysql connections|
-|zabbix_dbhost|STRING|NO|'127.0.0.1'|Zabbix dbhost for proxies/server|
-|zabbix_dbname|STRING|NO|`zabbix_{{ zabbix_component }}`|Zabbix dbname for proxies/server|
-|zabbix_dbuser|STRING|NO|`zabbix_{{ zabbix_component }}`|Zabbix dbuser user for proxies/server|
 |zabbix_user|STRING|NO|zabbix|Zabbix user|
 |zabbix_tls_dir|STRING|NO|/etc/zabbix/tls|Zabbix tls directory|
 |zabbix_tls_pskfile|STRING|NO|/etc/zabbix/tls/psk.secret|Zabbix psk file|
@@ -131,16 +126,16 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_proxy_scripts|STRING|NO|`{{ zabbix_scripts }}`|Zabbix proxy scripts overwrite variable|
 |zabbix_proxy_configfrequency|INT|NO|`{{ zabbix_configfrequency }}`|Zabbix proxy config frequency overwrite variable|
 |zabbix_proxy_unreacheableperiod|INT|NO|`{{ zabbix_unreacheableperiod }}`|Zabbix proxy unreacheable period overwrite variable|
-|zabbix_proxy_dbschema|STRING|NO|/usr/share/doc/zabbix-proxy-mysql/schema.sql.gz|Zabbix proxy db schema path|
 |zabbix_proxy_tlsconnect|STRING|NO|unencrypted|Zabbix proxy tls connection mode|
 |zabbix_proxy_tlsaccept|STRING|NO|unencrypted|Zabbix proxy tls accept mode|
 |zabbix_proxy_pskid|STRING|NO|NONE|Zabbix proxy psk id|
 |zabbix_proxy_psksecret|STRING|NO|NONE|Zabbix psk secret. Use `openssl rand -hex 64` to generate a secret|
-|zabbix_proxy_dbsocket|STRING|NO|`{{ zabbix_dbsocket }}`|Zabbix db socket for mysql connection overwrite variable|
-|zabbix_proxy_dbport|INT|NO|`{{ zabbix_dbport }}`|Zabbix db port for mysql connection overwrite variable|
-|zabbix_proxy_dbhost|INT|NO|`{{ zabbix_dbhost }}`|Database hostname for mysql schema import overwrite variable|
-|zabbix_proxy_dbname|STRING|NO|`{{ zabbix_dbname }}`|Database name for mysql schema import overwrite variable|
-|zabbix_proxy_dbuser|STRING|NO|`{{ zabbix_dbuser }}`|Database user for mysql schema import overwrite variable|
+|zabbix_proxy_dbschema|STRING|NO|/usr/share/doc/zabbix-proxy-mysql/schema.sql.gz|Zabbix proxy db schema path|
+|zabbix_proxy_dbsocket|STRING|NO|`/var/run/mysqld/mysqld.sock`|Zabbix db socket for mysql connection overwrite variable|
+|zabbix_proxy_dbport|INT|NO|`3306`|Zabbix db port for mysql connection overwrite variable|
+|zabbix_proxy_dbhost|INT|NO|`127.0.0.1`|Database hostname for mysql schema import overwrite variable|
+|zabbix_proxy_dbname|STRING|NO|`zabbix_proxy`|Database name for mysql schema import overwrite variable|
+|zabbix_proxy_dbuser|STRING|NO|`zabbix_proxy`|Database user for mysql schema import overwrite variable|
 |zabbix_proxy_dbpassword|STRING|PERHAPS|NONE|Database password for mysql schema import|
 |zabbix_proxy_remotecommands|INT|NO|`0`|Enable remote commands|
 |zabbix_proxy_logremotecommands|INT|NO|`0`|Log remote commands|
@@ -149,6 +144,11 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |-|-|-|-|-|
 |zabbix_server_mysql_import|BOOL|NO|false|Import server mysql schema|
 |zabbix_server_dbschema|STRING|NO|/usr/share/doc/zabbix-sql-scripts/mysql/create.sql.gz|Zabbix server db schema path|
+|zabbix_server_dbsocket|STRING|NO|`/var/run/mysqld/mysqld.sock`|Zabbix db socket for mysql|
+|zabbix_server_dbport|INT|NO|`3306`|Zabbix db port for mysql connection|
+|zabbix_server_dbhost|INT|NO|`127.0.0.1`|Database hostname for mysql schema import|
+|zabbix_server_dbname|STRING|NO|`zabbix_server`|Database name for mysql schema import|
+|zabbix_server_dbuser|STRING|NO|`zabbix_server`|Database user for mysql schema import|
 |zabbix_server_package|STRING|NO|`zabbix-server-mysql`|Zabbix server package to install|
 |zabbix_server_conf_default|DICT|NO|See defaults|Defaults zabbix server variables|
 |zabbix_server_conf|DICT|PERHAPS|NONE|Additional zabbix server variables|

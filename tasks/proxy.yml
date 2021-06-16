@@ -9,7 +9,7 @@
     - zabbix_external
 
 - name: zabbix-proxy | include vars version_5.x.yml
-  include_vars: version_5.x.yml
+  include_vars: proxy_5.x.yml
   when: "zabbix_version is version_compare(5.0, '>=')"
   tags:
     - zabbix_install
@@ -33,8 +33,8 @@
     - zabbix_proxy
     - zabbix_install
 
-- name: zabbix-proxy | include proxy/import.yml
-  include: proxy/import.yml
+- name: zabbix-proxy | include import.yml
+  include: import.yml
   when: zabbix_proxy_mysql_import
   tags:
     - zabbix_import

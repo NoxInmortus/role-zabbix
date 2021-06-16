@@ -10,3 +10,10 @@ zabbix_component_package: '{{ zabbix_proxy_package }}'
 zabbix_component_asserts:
   - zabbix_proxy_servers
   - zabbix_proxy_dbpassword
+zabbix_component_dbschema: '{{ zabbix_proxy_dbschema }}'
+zabbix_dbsocket: '{{ zabbix_proxy_dbsocket|default("/var/run/mysqld/mysqld.sock") }}'
+zabbix_dbport: '{{ zabbix_proxy_port|default(3306) }}'
+zabbix_dbhost: '{{ zabbix_proxy_host|default("127.0.0.1") }}'
+zabbix_dbname: '{{ zabbix_proxy_dbname|default("zabbix_proxy") }}'
+zabbix_dbuser: '{{ zabbix_proxy_dbuser|default("zabbix_proxy") }}'
+zabbix_dbpassword: '{{ zabbix_proxy_dbpassword }}'

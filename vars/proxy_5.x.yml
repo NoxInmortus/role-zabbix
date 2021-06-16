@@ -1,0 +1,6 @@
+---
+zabbix_component_dependencies:
+  - python3-mysqldb
+  - zabbix-get
+  - zabbix-sql-scripts
+zabbix_component_dbschema: '/usr/share/doc/zabbix-sql-scripts/mysql/schema.sql.gz'

@@ -9,3 +9,10 @@ zabbix_component_dependencies:
 zabbix_component_package: '{{ zabbix_server_package }}'
 zabbix_component_asserts:
   - zabbix_server_dbpassword
+zabbix_component_dbschema: '{{ zabbix_server_dbschema }}'
+zabbix_dbsocket: '{{ zabbix_server_dbsocket|default("/var/run/mysqld/mysqld.sock") }}'
+zabbix_dbport: '{{ zabbix_server_port|default(3306) }}'
+zabbix_dbhost: '{{ zabbix_server_host|default("127.0.0.1") }}'
+zabbix_dbname: '{{ zabbix_server_dbname|default("zabbix_server") }}'
+zabbix_dbuser: '{{ zabbix_server_dbuser|default("zabbix_server") }}'
+zabbix_dbpassword: '{{ zabbix_server_dbpassword }}'
