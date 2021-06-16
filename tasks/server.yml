@@ -3,6 +3,17 @@
   include_vars: server.yml
   when: zabbix_server
   tags:
+    - zabbix_install
+    - zabbix_server
+    - zabbix_config
+    - zabbix_external
+    - zabbix_import
+
+- name: zabbix-server | include vars version_5.x.yml
+  include_vars: version_5.x.yml
+  when: "zabbix_version is version_compare(5.0, '>=')"
+  tags:
+    - zabbix_install
     - zabbix_server
     - zabbix_config
     - zabbix_external
@@ -20,6 +31,7 @@
   include: install.yml
   tags:
     - zabbix_install
+    - zabbix_server
 
 - name: zabbix-server | include server/import.yml
   include: server/import.yml

@@ -1,0 +1,5 @@
+---
+zabbix_component_dependencies:
+  - python3-mysqldb
+  - zabbix-get
+  - zabbix-sql-scripts

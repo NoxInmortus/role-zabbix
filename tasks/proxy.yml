@@ -1,7 +1,16 @@
 ---
 - name: zabbix-proxy | include vars proxy.yml
   include_vars: proxy.yml
-  when: zabbix_proxy
+  tags:
+    - zabbix_install
+    - zabbix_config
+    - zabbix_proxy
+    - zabbix_import
+    - zabbix_external
+
+- name: zabbix-proxy | include vars version_5.x.yml
+  include_vars: version_5.x.yml
+  when: "zabbix_version is version_compare(5.0, '>=')"
   tags:
     - zabbix_install
     - zabbix_config
@@ -24,16 +33,16 @@
     - zabbix_proxy
     - zabbix_install
 
-- name: zabbix-proxy | include proxy/config.yml
-  include: proxy/config.yml
-  tags:
-    - zabbix_config
-
 - name: zabbix-proxy | include proxy/import.yml
   include: proxy/import.yml
   when: zabbix_proxy_mysql_import
   tags:
     - zabbix_import
+
+- name: zabbix-proxy | include proxy/config.yml
+  include: proxy/config.yml
+  tags:
+    - zabbix_config
 
 - name: zabbix-proxy | include config.yml
   include: config.yml
