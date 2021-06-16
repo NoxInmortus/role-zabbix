@@ -3,7 +3,14 @@
 
 
 <a name="1.0.9"></a>
-## [1.0.9] - 2021-06-03
+## [1.0.9] - 2021-06-16
+### Added
+- Specific Zabbix v5.x variables to install zabbix-sql-scripts
+- zabbix_(agent,proxy,server}_package and zabbix_packages_extra variables
+
+### Changed
+- Rework how mysql import for proxy/server is handled, and add compatibility for Zabbix version 5.x
+
 
 <a name="1.0.8"></a>
 ## [1.0.8] - 2021-06-03
