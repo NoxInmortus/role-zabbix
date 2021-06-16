@@ -6,6 +6,6 @@ zabbix_tls_psksecret: "{{ zabbix_agent_psksecret|default(omit) }}"
 zabbix_include_templates: "{{ zabbix_agent_include_templates|default(omit) }}"
 zabbix_component_dependencies:
   - netcat
-zabbix_component_package: zabbix-agent
+zabbix_component_package: '{{ zabbix_agent_package }}'
 zabbix_component_asserts:
   - zabbix_agent_servers

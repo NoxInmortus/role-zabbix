@@ -32,6 +32,7 @@ zabbix_unreacheableperiod: 300
 zabbix_dependencies:
   - fping
   - "{{ zabbix_component_dependencies }}"
+zabbix_packages_extra: []
 
 # Agent
 zabbix_agent_servers: "{{ zabbix_servers }}"
@@ -40,6 +41,7 @@ zabbix_agent_listenport: 10050
 zabbix_agent_hostname: "{{ zabbix_hostname }}"
 zabbix_agent_timeout: "{{ zabbix_timeout }}"
 zabbix_agent_debuglevel: "{{ zabbix_debuglevel }}"
+zabbix_agent_package: 'zabbix-agent'
 zabbix_agent_pidfile: "{{ zabbix_pidfile }}"
 zabbix_agent_scripts: "{{ zabbix_scripts }}"
 zabbix_agent_sudo: true
@@ -58,6 +60,7 @@ zabbix_proxy_listenport: "{{ zabbix_listenport }}"
 zabbix_proxy_serverport: "{{ zabbix_listenport }}"
 zabbix_proxy_timeout: "{{ zabbix_timeout }}"
 zabbix_proxy_debuglevel: "{{ zabbix_debuglevel }}"
+zabbix_proxy_package: 'zabbix-proxy-mysql'
 zabbix_proxy_scripts: "{{ zabbix_scripts }}"
 zabbix_proxy_configfrequency: "{{ zabbix_configfrequency }}"
 zabbix_proxy_unreacheableperiod: "{{ zabbix_unreacheableperiod }}"
@@ -75,6 +78,7 @@ zabbix_proxy_logremotecommands: 0
 # Server
 zabbix_server_mysql_import: false
 zabbix_server_dbschema: "/usr/share/doc/zabbix-sql-scripts/mysql/create.sql.gz"
+zabbix_server_package: 'zabbix-server-mysql'
 zabbix_server_conf: []
 zabbix_server_conf_default:
   ListenPort: "{{ zabbix_listenport }}"

@@ -94,6 +94,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_configfrequency|INT|NO|3600|Zabbix global config frequency|
 |zabbix_unreacheableperiod|INT|NO|300|Zabbix global unreacheable period|
 |zabbix_dependencies|LIST|NO|See defaults|Zabbix dependencies packages to install|
+|zabbix_packages_extra|LIST|NO|NONE|Zabbix extra packages to install|
 
 |AGENT VARIABLES|TYPE|REQUIRED|DEFAULT|DESCRIPTION|
 |-|-|-|-|-|
@@ -103,6 +104,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_agent_hostname|STRING|NO|`{{ zabbix_hostname }}`|Zabbix agent hostname overwrite variable|
 |zabbix_agent_timeout|INT|NO|`{{ zabbix_timeout }}`|Zabbix agent timeout overwrite variable|
 |zabbix_agent_debuglevel|INT|NO|`{{ zabbix_debuglevel }}`|Zabbix agent debug log level overwrite variable|
+|zabbix_agent_package|STRING|NO|`zabbix-agent`|Zabbix agent package to install|
 |zabbix_agent_pidfile|STRING|NO|`/run/zabbix/zabbix_{{ zabbix_component }}d.pid`|Zabbix pid file overwrite variable|
 |zabbix_agent_scripts|STRING|NO|`{{ zabbix_scripts }}`|Zabbix agent scripts overwrite variable|
 |zabbix_agent_sudo|BOOL|NO|true|Add all sudoers right to exec scripts in `{{ zabbix_agent_scripts }}`|
@@ -125,6 +127,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |zabbix_proxy_serverport|INT|NO|`{{ zabbix_listenport }}`|Zabbix proxy overwrite variable for server port|
 |zabbix_proxy_timeout|INT|NO|`{{ zabbix_timeout }}`|Zabbix proxy timeout overwrite variable|
 |zabbix_proxy_debuglevel|INT|NO|`{{ zabbix_debuglevel }}`|Zabbix proxy debug log level overwrite variable|
+|zabbix_proxy_package|STRING|NO|`zabbix-proxy-mysql`|Zabbix proxy package to install|
 |zabbix_proxy_scripts|STRING|NO|`{{ zabbix_scripts }}`|Zabbix proxy scripts overwrite variable|
 |zabbix_proxy_configfrequency|INT|NO|`{{ zabbix_configfrequency }}`|Zabbix proxy config frequency overwrite variable|
 |zabbix_proxy_unreacheableperiod|INT|NO|`{{ zabbix_unreacheableperiod }}`|Zabbix proxy unreacheable period overwrite variable|
@@ -146,6 +149,7 @@ Note: `zabbix_component` variable does not need to be defined, automatically set
 |-|-|-|-|-|
 |zabbix_server_mysql_import|BOOL|NO|false|Import server mysql schema|
 |zabbix_server_dbschema|STRING|NO|/usr/share/doc/zabbix-sql-scripts/mysql/create.sql.gz|Zabbix server db schema path|
+|zabbix_server_package|STRING|NO|`zabbix-server-mysql`|Zabbix server package to install|
 |zabbix_server_conf_default|DICT|NO|See defaults|Defaults zabbix server variables|
 |zabbix_server_conf|DICT|PERHAPS|NONE|Additional zabbix server variables|
 |zabbix_server_dbpassword|STRING|YES|NONE|MySQL DBPassword for zabbix server|

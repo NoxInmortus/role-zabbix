@@ -6,7 +6,7 @@ zabbix_include_templates: "{{ zabbix_proxy_include_templates|default(omit) }}"
 zabbix_component_dependencies:
   - python3-mysqldb
   - zabbix-get
-zabbix_component_package: zabbix-proxy-mysql
+zabbix_component_package: '{{ zabbix_proxy_package }}'
 zabbix_component_asserts:
   - zabbix_proxy_servers
   - zabbix_proxy_dbpassword

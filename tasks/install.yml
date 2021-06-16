@@ -30,6 +30,7 @@
   with_items:
     - "{{ zabbix_dependencies }}"
     - "{{ zabbix_component_package }}"
+    - "{{ zabbix_packages_extra }}"
 
 - name: zabbix-install | Install zabbix-sender
   apt:

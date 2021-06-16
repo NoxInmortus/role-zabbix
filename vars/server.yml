@@ -4,9 +4,8 @@ zabbix_conf_file: "/etc/zabbix/zabbix_{{ zabbix_component }}.conf"
 zabbix_tls_psksecret: "{{ zabbix_server_psksecret|default(omit) }}"
 zabbix_include_templates: "{{ zabbix_server_include_templates|default(omit) }}"
 zabbix_component_dependencies:
-  - python3-psycopg2
   - python3-mysqldb
   - zabbix-get
-zabbix_component_package: zabbix-server-mysql
+zabbix_component_package: '{{ zabbix_server_package }}'
 zabbix_component_asserts:
   - zabbix_server_dbpassword
