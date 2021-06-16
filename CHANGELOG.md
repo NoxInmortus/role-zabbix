@@ -2,6 +2,16 @@
 ## [Unreleased]
 
 
+<a name="1.0.9"></a>
+## [1.0.9] - 2021-06-03
+
+<a name="1.0.8"></a>
+## [1.0.8] - 2021-06-03
+### Fixed
+- Python3 compatibility fix
+- Missing default variables for zabbix-server
+
+
 <a name="1.0.7"></a>
 ## [1.0.7] - 2021-06-03
 ### Fixed
@@ -77,7 +87,9 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.7...HEAD
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.9...HEAD
+[1.0.9]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.8...1.0.9
+[1.0.8]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.7...1.0.8
 [1.0.7]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.6...1.0.7
 [1.0.6]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.5...1.0.6
 [1.0.5]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.4...1.0.5
