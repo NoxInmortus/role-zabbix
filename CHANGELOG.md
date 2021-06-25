@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="1.0.10"></a>
+## [1.0.10] - 2021-06-25
+### Fixed
+- Bad variables were used following last commit
+
+
 <a name="1.0.9"></a>
 ## [1.0.9] - 2021-06-16
 ### Added
@@ -94,7 +100,8 @@
 - Regression, removed ServerActive parameter from zabbix proxy
 
 
-[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.9...HEAD
+[Unreleased]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.10...HEAD
+[1.0.10]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.9...1.0.10
 [1.0.9]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.8...1.0.9
 [1.0.8]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.7...1.0.8
 [1.0.7]: https://git.tools01.noxinmortus.fr/sysadmins/ansible/role-zabbix/compare/1.0.6...1.0.7
